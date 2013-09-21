@@ -20,10 +20,10 @@ stackoverflow上Python相关回答整理翻译
 ### 目录
 > 基础
 
-* [控制流]https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-control-flow.md)
-* [字符串]https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-string.md)
-* [文件]https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-file.md)
-* [数学相关]https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-math.md)
+* [控制流](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-control-flow.md)
+* [字符串](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-string.md)
+* [文件](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-file.md)
+* [数学相关](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-math.md)
 
 
 > 基本数据结构
