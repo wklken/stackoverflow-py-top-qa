@@ -9,20 +9,19 @@ stackoverflow上Python相关回答整理翻译
 
 目前进度 50% ，翻译完100个问题，还有100+的样子，后续逐步翻译加入
 
-相对来说都比较简单
+相对来说都比较简单, 比较散，非系统学习用途，只是个人整理而已
 
-总结整理，复习印证(注意，合并了每个问题的多个答案，但是时间仓促，疏漏难免，感兴趣问题直接点链接看原文吧)
+如果有兴趣，可以一起翻译
 
-如果有兴趣，可以提交你的翻译
-
+注意，合并了每个问题的多个答案，但是时间仓促，疏漏难免，感兴趣问题直接点链接看原文吧
 
 
 ### 目录
 > 基础
 
-* [控制流](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-control-flow.md)
-* [字符串](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-string.md)
-* [文件](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-file.md)
+* [基本语法控制流相关](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-control-flow.md)
+* [字符串相关](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-string.md)
+* [文件相关](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-file.md)
 * [数学相关](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-math.md)
 
 
@@ -37,11 +36,9 @@ stackoverflow上Python相关回答整理翻译
 * [函数](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-func.md)
 * [内置函数](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-built-in.md)
 * [异常](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-exception.md)
-* 模块 
-    [模块](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-modules.md)
-    [标准库](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-std-modules.md)
-    [日期](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-datetime.md)
-
+* [模块](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-modules.md)
+* [标准库](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-std-modules.md)
+* [日期](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-datetime.md)
 * [oop](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-oop.md)
 
 > 其他
