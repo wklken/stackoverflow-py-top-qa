@@ -1,4 +1,3 @@
-
 ### 如何结束退出一个python脚本
 
 问题 [链接](http://stackoverflow.com/questions/73663/terminating-a-python-script)
@@ -27,7 +26,7 @@
     False
 
     >>> list1 = [1, 2, 3]
-    >>> list2 = [1, 2, 3]]
+    >>> list2 = [1, 2, 3]
     >>> list1==list2
     True
     >>> list1 is list2
