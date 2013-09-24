@@ -1,4 +1,3 @@
-
 ### 如何结束退出一个python脚本
 
 问题 [链接](http://stackoverflow.com/questions/73663/terminating-a-python-script)
@@ -143,7 +142,7 @@ Python Cookbook中的几种方式
 
 问题 [链接](http://stackoverflow.com/questions/2710940/python-if-x-is-not-none-or-if-not-x-is-none)
 
-我总想着使用 'if x is not None' 会更加简明
+我总想着使用 'if not x is None' 会更加简明
 
 但是google的Python风格指南使用的却是 'if x is not None'
 
