@@ -1,4 +1,3 @@
-
 ### 序列的切片操作
 
 问题 [链接](http://stackoverflow.com/questions/509211/the-python-slice-notation)
@@ -254,7 +253,7 @@ python中是不是只有这种方法可以获取长度？语法很奇怪
 
 插入，删除和归属判断复杂度都是O(1)
 
-### 如何在遍历一个list时删除某些玄素
+### 如何在遍历一个list时删除某些元素
 
 问题 [链接](http://stackoverflow.com/questions/1207406/remove-items-from-a-list-while-iterating-in-python)
 
