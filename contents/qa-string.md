@@ -1,4 +1,3 @@
-
 ### 为什么是string.join(list)而不是list.join(string)
 
 问题 [链接](http://stackoverflow.com/questions/493819/python-join-why-is-it-string-joinlist-instead-of-list-joinstring)
@@ -9,7 +8,7 @@
 
 答案：
 
-因为所有可迭代对象都可以被连接，但是连接者总是字符串
+因为所有可迭代对象都可以被连接，而不只是列表，但是连接者总是字符串
 
 ### 字符如何转为小写
 
