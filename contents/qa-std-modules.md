@@ -142,3 +142,17 @@ dir是一个位置参数，定义如下
     for atype in e.findall('type')
         print(atype.get('foobar'))
 
+### 如何使用Python创建一个GUID
+
+问题 [链接](http://stackoverflow.com/questions/534839/how-to-create-a-guid-in-python)
+
+如何使用原生的python创建一个GUID?
+
+Python2.5及以上版本,使用[uuid](http://docs.python.org/2/library/uuid.html)模块
+
+    >>> import uuid
+    >>> uuid.uuid1()
+    UUID('5a35a426-f7ce-11dd-abd2-0017f227cfc7')
+
+
+

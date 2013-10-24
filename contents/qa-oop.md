@@ -288,3 +288,31 @@ LBYL(look before you leap)
 
 我还是认为将函数放入模块，并将其作为一个单例来使用是最好的办法
 
+### 理解Python的Super()和init方法
+
+问题 [链接](http://stackoverflow.com/questions/576169/understanding-python-super-and-init-methods)
+
+尝试着去理解super().从表面上看，两个子类都能正常创建.我只是好奇他们两者之间的不同点
+
+    class Base(object):
+        def __init__(self):
+            print "Base created"
+
+    class ChildA(Base):
+        def __init__(self):
+            Base.__init__(self)
+
+    class ChildB(Base):
+        def __init__(self):
+            super(ChildB, self).__init__()
+
+    print ChildA(),ChildB()
+
+回答
+
+Super让你避免明确地引用基类，这是一点。最大的优势是，当出现多重继承的时候，各种[有趣的情况](http://www.artima.com/weblogs/viewpost.jsp?thread=236275)就会出现。查看super[官方文档](http://docs.python.org/library/functions.html#super).
+
+另外注意，在Python3.0中，可以使用super().__init__() 代替 super(ChildB, self).__init__().IMO略有优势.
+
+
+

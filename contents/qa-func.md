@@ -80,3 +80,28 @@
     first, *rest = [1,2,3,4]
     first, *l, last = [1,2,3,4]
 
+### 在Python中使用**kwargs的合适方法
+
+问题 [链接](http://stackoverflow.com/questions/1098549/proper-way-to-use-kwargs-in-python)
+
+当存在默认值的时候，如何合适的使用**kwargs?
+
+kwargs返回一个字典，但是这是不是设置默认值的最佳方式？还是有其他方式？我只能将其作为一个字典接受，然后用get函数获取参数？
+
+    class ExampleClass:
+        def __init__(self, **kwargs):
+            self.val = kwargs['val']
+            self.val2 = kwargs.get('val2')
+
+问题很简单，但是我没找到合适的解释。我见到人们用不同的方式实现，很难搞明白如何使用
+
+回答
+
+你可以用get函数给不在字典中的key传递一个默认值
+
+    self.val2 = kwargs.get('val2',"default value")
+
+但是，如果你计划给一个特别的参数赋默认值，为什么不在前一个位置使用命名参数？
+
+    def __init__(self, val2="default value", **kwargs):
+
