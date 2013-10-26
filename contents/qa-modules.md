@@ -20,3 +20,18 @@
     foo = imp.load_source('module.name', '/path/to/file.py')
     foo.MyClass()
 
+###  获取Python模块文件的路径
+
+问题 [链接](http://stackoverflow.com/questions/247770/retrieving-python-module-path)
+
+如何才能获取一个模块其所在的路径
+
+回答
+
+    import a_module
+    print a_module.__file__
+
+获取其所在目录，可以
+
+    import os
+    path = os.path.dirname(amodule.__file__)

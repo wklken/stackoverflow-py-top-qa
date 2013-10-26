@@ -201,3 +201,34 @@ Python Cookbook中的几种方式
 我猜想这么做的原因是，全局变量很危险，Python想要确保你真的知道你要对一个全局的变量进行操作
 
 如果你想知道如何在模块间使用全局变量，查看其他回答
+
+### 如何检测一个变量是否存在
+
+问题 [链接](http://stackoverflow.com/questions/843277/how-do-i-check-if-a-variable-exists-in-python)
+
+我想检测一个变量是否存在，我现在是这么做的
+
+    try:
+        myVar
+    except NameError:
+        # Doint smth
+
+存在其他不是使用exception的方式么？
+
+回答
+
+
+检测本地变量
+
+    if 'myVar' in locals():
+        # myVar exists.
+
+检测全局变量
+
+    if 'myVar' in globals():
+        # myVar exists.
+
+检测一个对象是否包含某个属性
+
+    if hasattr(obj, 'attr_name'):
+        # obj.attr_name exists.

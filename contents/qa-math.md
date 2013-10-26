@@ -58,3 +58,16 @@ Python 3.0 beta: 同2.6，但不支持027这种语法
 
     c = a / float(b)
 
+### 如何将一个整数转为字符串
+
+问题 [链接](http://stackoverflow.com/questions/961632/converting-integer-to-string-in-python)
+
+回答
+
+    >>> str(10)
+    '10'
+    >>> int('10')
+    10
+
+对应文档 [int()](http://docs.python.org/2/library/functions.html#int) [str()](http://docs.python.org/2/library/functions.html#str)
+
