@@ -59,3 +59,30 @@
 问题 [链接](http://stackoverflow.com/questions/739993/get-a-list-of-installed-python-modules)
 
     >>> help('modules')
+
+### 为什么要使用pip而不是easy_install
+
+问题 [链接](http://stackoverflow.com/questions/3220404/why-use-pip-over-easy-install)
+
+有一条推文
+
+    Don't use easy_install, unless you like stabbing yourself in the face. Use pip.
+
+Pip简介
+
+    All packages are downloaded before installation. Partially-completed installation doesn’t occur as a result.
+    Care is taken to present useful output on the console.
+    The reasons for actions are kept track of. For instance, if a package is being installed, pip keeps track of why that package was required.
+    Error messages should be useful.
+    The code is relatively concise and cohesive, making it easier to use programmatically.
+    Packages don’t have to be installed as egg archives, they can be installed flat (while keeping the egg metadata).
+    Native support for other version control systems (Git, Mercurial and Bazaar)
+    Uninstallation of packages.
+    Simple to define fixed sets of requirements and reliably reproduce a set of packages.
+
+其他原因：
+
+    Another—as of yet unmentioned—reason for favoring pip is because it is the new hotness and will continue to be used in the future.
+
+    pip提供unstall命令
+    如果中途安装失败，pip will leave you in a clean state.

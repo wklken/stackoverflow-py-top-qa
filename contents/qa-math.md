@@ -71,3 +71,5 @@ Python 3.0 beta: 同2.6，但不支持027这种语法
 
 对应文档 [int()](http://docs.python.org/2/library/functions.html#int) [str()](http://docs.python.org/2/library/functions.html#str)
 
+
+

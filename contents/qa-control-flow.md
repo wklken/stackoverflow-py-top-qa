@@ -232,3 +232,42 @@ Python Cookbook中的几种方式
 
     if hasattr(obj, 'attr_name'):
         # obj.attr_name exists.
+
+### Python中是否存在三元运算符
+
+问题 [链接](http://stackoverflow.com/questions/394809/does-python-have-a-ternary-conditional-operator)
+
+三元运算在Python2.5中被加入
+
+    a if test else b
+
+使用
+
+    >>> 'true' if True else 'false'
+    'true'
+    >>> 'true' if False else 'false'
+    'false'
+
+官方文档：
+
+[Conditional expressions](https://docs.python.org/3/reference/expressions.html#conditional-expressions)
+
+[Is there an equivalent of C’s ”?:” ternary operator?](https://docs.python.org/3.3/faq/programming.html#is-there-an-equivalent-of-c-s-ternary-operator)
+
+
+### Python中的do-while
+
+问题 [链接](http://stackoverflow.com/questions/743164/do-while-loop-in-python)
+
+实现方法
+
+    while True:
+        stuff()
+        if fail_condition:
+            break
+
+或者
+
+    stuff()
+    while not fail_condition:
+        stuff()

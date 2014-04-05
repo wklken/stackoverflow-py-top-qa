@@ -155,4 +155,55 @@ Python2.5及以上版本,使用[uuid](http://docs.python.org/2/library/uuid.html
     UUID('5a35a426-f7ce-11dd-abd2-0017f227cfc7')
 
 
+### 我该使用urllib/urllib2还是requests库
+
+问题 [链接](http://stackoverflow.com/questions/2018026/should-i-use-urllib-or-urllib2-or-requests)
+
+[requests](http://docs.python-requests.org/en/latest/index.html)
+
+推荐使用requests库
+
+1. 支持restful API
+
+        import requests
+        ...
+
+        resp = requests.get('http://www.mywebsite.com/user')
+        resp = requests.post('http://www.mywebsite.com/user')
+        resp = requests.put('http://www.mywebsite.com/user/put')
+        resp = requests.delete('http://www.mywebsite.com/user/delete')
+
+2. 无论GET/POST，你不需要关注编码
+
+        userdata = {"firstname": "John", "lastname": "Doe", "password": "jdoe123"}
+        resp = requests.post('http://www.mywebsite.com/user', params=userdata)
+
+3. 内建json decoder
+
+        resp.json()
+
+        resp.text #纯文本
+
+4. 其他 建官方文档
+
+urllib2，提供了一些额外的函数，让你可以自定义request headers
+
+    r = Request(url='http://www.mysite.com')
+    r.add_header('User-Agent', 'awesome fetcher')
+    r.add_data(urllib.urlencode({'foo': 'bar'})
+    response = urlopen(r)
+
+注意：urlencode只有urllib中有
+
+
+### Python中是否存在方法可以打印对象的所有属性和方法
+
+问题 [链接](http://stackoverflow.com/questions/192109/is-there-a-function-in-python-to-print-all-the-current-properties-and-values-of)
+
+使用pprint
+
+    from pprint import pprint
+    pprint (vars(your_object))
+
+
 

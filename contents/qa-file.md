@@ -1,4 +1,16 @@
 
+### 如何判断一个文件是否存在
+
+问题 [链接](http://stackoverflow.com/questions/82831/how-do-i-check-if-a-file-exists-using-python)
+
+如何检查一个文件是否存在，不适用try:声明
+
+    import os.path
+    print os.path.isfile(fname)
+
+    print os.path.exists(fname)
+
+
 ### 如何创建不存在的目录结构
 
 问题 [链接](http://stackoverflow.com/questions/273192/python-best-way-to-create-directory-if-it-doesnt-exist-for-file-write)
@@ -210,4 +222,86 @@ import os
     import fileinput
     for line in fileinput.input():
         pass
+
+### 如何高效地获取文件行数
+
+问题 [链接](http://stackoverflow.com/questions/845058/how-to-get-line-count-cheaply-in-python)
+
+
+比较结果python2.6
+
+    mapcount : 0.471799945831
+    simplecount : 0.634400033951
+    bufcount : 0.468800067902
+    opcount : 0.602999973297
+
+代码
+
+    from __future__ import with_statement
+    import time
+    import mmap
+    import random
+    from collections import defaultdict
+
+    def mapcount(filename):
+        f = open(filename, "r+")
+        buf = mmap.mmap(f.fileno(), 0)
+        lines = 0
+        readline = buf.readline
+        while readline():
+            lines += 1
+        return lines
+
+    def simplecount(filename):
+        lines = 0
+        for line in open(filename):
+            lines += 1
+        return lines
+
+    def bufcount(filename):
+        f = open(filename)
+        lines = 0
+        buf_size = 1024 * 1024
+        read_f = f.read # loop optimization
+
+        buf = read_f(buf_size)
+        while buf:
+            lines += buf.count('\n')
+            buf = read_f(buf_size)
+
+        return lines
+
+    def opcount(fname):
+        with open(fname) as f:
+            for i, l in enumerate(f):
+                pass
+        return i + 1
+
+
+    counts = defaultdict(list)
+
+    for i in range(5):
+        for func in [mapcount, simplecount, bufcount, opcount]:
+            start_time = time.time()
+            assert func("big_file.txt") == 1209138
+            counts[func].append(time.time() - start_time)
+
+    for key, vals in counts.items():
+        print key.__name__, ":", sum(vals) / float(len(vals))
+
+
+### Python如何实现mkdir -p功能
+
+
+问题 [链接](http://stackoverflow.com/questions/600268/mkdir-p-functionality-in-python)
+
+    import os, errno
+
+    def mkdir_p(path):
+        try:
+            os.makedirs(path)
+        except OSError as exc: # Python >2.5
+            if exc.errno == errno.EEXIST and os.path.isdir(path):
+                pass
+            else: raise
 

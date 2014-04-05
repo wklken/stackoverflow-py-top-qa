@@ -35,3 +35,33 @@
 
     import os
     path = os.path.dirname(amodule.__file__)
+
+### 谁可以解释一下__all__么？
+
+
+问题 [链接](http://stackoverflow.com/questions/44834/can-someone-explain-all-in-python)
+
+该模块的公有对象列表
+
+__all__指定了使用import module时，哪些对象会被import进来.其他不在列表里的不会被导入
+
+    __all__ = ["foo", "bar"]
+
+it's a list of public objects of that module -- it overrides the default of hiding everything that begins with an underscore
+
+### 如何重新加载一个python模块
+
+问题 [链接](http://stackoverflow.com/questions/437589/how-do-i-unload-reload-a-python-module)
+
+使用reload内置函数
+
+    reload(module_name)
+
+
+    import foo
+
+    while True:
+        # Do some things.
+        if is_changed(foo):
+            foo = reload(foo)
+

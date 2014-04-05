@@ -307,3 +307,28 @@ sum
 
     sum(l, [])
 
+
+### 列表解析和map
+
+问题 [链接](http://stackoverflow.com/questions/1247486/python-list-comprehension-vs-map)
+
+更喜欢使用map()而不是列表解析的原因是什么？
+
+
+在某些情况下，map性能更高一些(当你不是为了某些目的而使用lambda，而是在map和列表解析中使用相同函数).
+
+列表解析在另一些情况下性能更好，并且大多数pythonistas认为这样更简洁直接
+
+使用相同函数，略微优势
+
+    $ python -mtimeit -s'xs=range(10)' 'map(hex, xs)'
+    100000 loops, best of 3: 4.86 usec per loop
+    $ python -mtimeit -s'xs=range(10)' '[hex(x) for x in xs]'
+    100000 loops, best of 3: 5.58 usec per loop
+
+相反情况，使用lambda
+
+    $ python -mtimeit -s'xs=range(10)' 'map(lambda x: x+2, xs)'
+    100000 loops, best of 3: 4.24 usec per loop
+    $ python -mtimeit -s'xs=range(10)' '[x+2 for x in xs]'
+    100000 loops, best of 3: 2.32 usec per loop

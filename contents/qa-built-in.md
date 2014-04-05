@@ -119,3 +119,85 @@
     True
     >>> isinstance( {}, dict )
     True
+
+### Python中如何注释一段代码块/为什么Python没有多行注释
+
+问题 [链接](http://stackoverflow.com/questions/675442/comment-out-a-python-code-block)
+
+问题 [链接](http://stackoverflow.com/questions/397148/why-doesnt-python-have-multiline-comments)
+
+Python中多行注释的方式是
+
+    #print "hello"
+    #print "world"
+
+注意，不要使用多行字符串对代码块进行注释，除非是文档字符串docstring.
+
+### Python中单引号和双引号
+
+问题 [链接](http://stackoverflow.com/questions/56011/single-quotes-vs-double-quotes-in-python)
+
+根据文档，两者貌似没什么区别，有什么风格上的使用建议么？
+
+
+我偏好于
+
+双引号： 用于插入/改写的字符串， 自然语言消息
+
+单引号： 标识符字符串，例如字典key. 除非该字符串本身有单括号或者我忘了
+
+三引号： 文档字符串docstring 或者 正则表达式中原始字符串raw string
+
+例如：
+
+    LIGHT_MESSAGES = {
+        'English': "There are %(number_of_lights)s lights.",
+        'Pirate':  "Arr! Thar be %(number_of_lights)s lights."
+    }
+
+    def lights_message(language, number_of_lights):
+        """Return a language-appropriate string reporting the light count."""
+        return LIGHT_MESSAGES[language] % locals()
+
+    def is_pirate(message):
+        """Return True if the given message sounds piratical."""
+        return re.search(r"(?i)(arr|avast|yohoho)!", message) is not None
+
+这里很偏个人风格，所以，根据自己喜好，保持一致就行
+
+
+### 你是否能解释Python中的闭包
+
+问题 [链接](http://stackoverflow.com/questions/13857/can-you-explain-closures-as-they-relate-to-python)
+
+
+参考文章 [Closure on closures](http://mrevelle.blogspot.com/2006/10/closure-on-closures.html)
+
+    对象是数据和方法关联
+    比宝石函数和数据关联
+
+例如
+
+    def make_counter():
+        i = 0
+        def counter(): # counter() is a closure
+            nonlocal i
+            i += 1
+            return i
+        return counter
+
+    c1 = make_counter()
+    c2 = make_counter()
+
+    print (c1(), c1(), c2(), c2())
+    # -> 1 2 1 2
+
+其他解释(感觉英文更精准)
+
+    A function that references variables from a containing scope, potentially after flow-of-control has left that scope
+
+    A function that can refer to environments that are no longer active.
+    A closure allows you to bind variables into a function without passing them as parameters.
+
+
+

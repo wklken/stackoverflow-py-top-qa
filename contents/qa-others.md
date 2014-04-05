@@ -105,3 +105,91 @@
 如果要在 Python2.6或2.5版本使用，可以看 [这里](http://code.activestate.com/recipes/576611-counter-class/)
 
 
+### 在Python中如何连接mysql数据库
+
+问题 [链接](http://stackoverflow.com/questions/372885/how-do-i-connect-to-a-mysql-database-in-python)
+
+首先，安装mysqldb
+
+然后
+
+    #!/usr/bin/python
+    import MySQLdb
+
+    db = MySQLdb.connect(host="localhost", # your host, usually localhost
+                         user="john", # your username
+                          passwd="megajonhy", # your password
+                          db="jonhydb") # name of the data base
+
+    # you must create a Cursor object. It will let
+    #  you execute all the queries you need
+    cur = db.cursor()
+
+    # Use all the SQL you like
+    cur.execute("SELECT * FROM YOUR_TABLE_NAME")
+
+    # print all the first cell of all the rows
+    for row in cur.fetchall() :
+        print row[0]
+
+### Python框架flask和bottle有什么区别
+
+问题 [链接](http://stackoverflow.com/questions/4941145/python-flask-vs-bottle)
+
+区别：flask基于其他现有的存在很长一段时间的技术像Werkzeug和Jinja2，它没有尝试去重复发明轮子
+
+另外一方面，Bottle，试图用一个文件解决一切.
+
+我想去合并他们，但是Bottle的开发者貌似对偏离“一个文件”的处理方式不是很感兴趣
+
+关于可扩展性： 可以使用其他模板引擎，例如Flask-Genshi使用了mako模板
+
+Flask, Werkzeug and Jinja2 的开发者亲自回答的...碉堡了，翻译不是很准确
+
+
+### 如何测试一个python脚本的性能
+
+问题 [链接](http://stackoverflow.com/questions/582336/how-can-you-profile-a-python-script)
+
+
+引入
+
+    import cProfile
+    cProfile.run('foo()')
+
+执行脚本
+
+    python -m cProfile myscript.py
+
+结果
+
+    1007 function calls in 0.061 CPU seconds
+
+    Ordered by: standard name
+    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.061    0.061 <string>:1(<module>)
+    1000    0.051    0.000    0.051    0.000 euler048.py:2(<lambda>)
+        1    0.005    0.005    0.061    0.061 euler048.py:2(<module>)
+        1    0.000    0.000    0.061    0.061 {execfile}
+        1    0.002    0.002    0.053    0.053 {map}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler objects}
+        1    0.000    0.000    0.000    0.000 {range}
+        1    0.003    0.003    0.003    0.003 {sum}
+
+一个PyCon演讲 [入口](http://blip.tv/pycon-us-videos-2009-2010-2011/introduction-to-python-profiling-1966784)
+
+
+### 如何获取5分钟之后的unix时间戳
+
+问题 [链接](http://stackoverflow.com/questions/2775864/python-create-unix-timestamp-five-minutes-in-the-future)
+
+使用 [calendar.timegm](http://docs.python.org/3.3/library/calendar.html#calendar.timegm)
+
+    future = datetime.datetime.now() + datetime.timedelta(minutes = 5)
+    return calendar.timegm(future.utctimetuple())
+
+strftime的%s在windows中无法使用
+
+
+
+

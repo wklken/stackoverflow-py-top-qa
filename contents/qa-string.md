@@ -304,3 +304,29 @@ is 等价于 id(a) == id(b)
     >>> print("{0:03d}".format(4))  # python 3
     >>> 004
 
+### 如何将字符串转换为datetime
+
+字符串 -> time  [strptime](https://docs.python.org/2/library/time.html#time.strptime)
+
+    >>> import time
+    >>> time.strptime("30 Nov 00", "%d %b %y")   
+    time.struct_time(tm_year=2000, tm_mon=11, tm_mday=30, tm_hour=0, tm_min=0,
+                    tm_sec=0, tm_wday=3, tm_yday=335, tm_isdst=-1)
+
+time -> 字符串  [strftime](https://docs.python.org/2/library/time.html#time.strftime)
+
+    >>> from time import gmtime, strftime
+    >>> strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())
+    'Thu, 28 Jun 2001 14:17:15 +0000'
+
+
+### 如何将byte array转为string
+
+问题 [链接](http://stackoverflow.com/questions/606191/convert-byte-array-to-python-string)
+
+    >>> b"abcde"
+    b'abcde'
+    >>> b"abcde".decode("utf-8")
+    'abcde'
+
+

@@ -315,4 +315,26 @@ Super让你避免明确地引用基类，这是一点。最大的优势是，当
 另外注意，在Python3.0中，可以使用super().__init__() 代替 super(ChildB, self).__init__().IMO略有优势.
 
 
+### 在Python中，如何判断一个对象iterable?
 
+问题 [链接](http://stackoverflow.com/questions/1952464/in-python-how-do-i-determine-if-an-object-is-iterable)
+
+1. 检查__iter__对序列类型有效，但是对例如string，无效
+
+
+        try:
+            iterator = iter(theElement)
+        except TypeError:
+            # not iterable
+        else:
+            # iterable
+
+        # for obj in iterator:
+        #     pass
+
+2. 使用collections
+
+        import collections
+
+        if isinstance(e, collections.Iterable):
+            # e is iterable

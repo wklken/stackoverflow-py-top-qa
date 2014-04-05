@@ -187,3 +187,30 @@ in更pythonic, 另外 has_key()在Python3.x中已经被移除
 
     from operator import itemgetter
     newlist = sorted(list_to_be_sorted, key=itemgetter('name'))
+
+### 根据值排序一个字典
+
+问题 [链接](http://stackoverflow.com/questions/613183/python-sort-a-dictionary-by-value)
+
+    import operator
+    x = {1: 2, 3: 4, 4:3, 2:1, 0:0}
+    sorted_x = sorted(x.iteritems(), key=operator.itemgetter(1))
+    #[(0, 0), (2, 1), (1, 2), (4, 3), (3, 4)]
+    #dict(sorted_x) == x
+
+### 如何将自定义对象作为字典键值
+
+问题 [链接](http://stackoverflow.com/questions/4901815/object-as-a-dictionary-key)
+
+    class MyThing:
+        def __init__(self,name,location,length):
+            self.name = name
+            self.location = location
+            self.length = length
+
+        def __hash__(self):
+            return hash((self.name, self.location))
+
+        def __eq__(self, other):
+            return (self.name, self.location) == (other.name, other.location)
+
