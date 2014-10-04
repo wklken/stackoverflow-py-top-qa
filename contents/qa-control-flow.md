@@ -271,3 +271,20 @@ Python Cookbook中的几种方式
     stuff()
     while not fail_condition:
         stuff()
+
+### 相对于range() 应该更倾向于实用xrange()?
+
+问题 [链接](http://stackoverflow.com/questions/135041/should-you-always-favor-xrange-over-range) 
+
+why or why not?
+
+就性能而言, 特别是当你迭代一个大的range, xrange()更优. 但是, 有一些情况下range()更优
+
+- 在Python3中, range() 等价于 python2.x的 xrange(), 而xrange()不存在了.(如果你的代码将在2和3下运行, 不能使用xrange)
+
+- range()在某些情况下更快, 例如, 多次重复遍历同一个序列. 
+
+- xrange()并不适用于所有情况, 例如, 不支持slices以及任意的list方法
+
+
+

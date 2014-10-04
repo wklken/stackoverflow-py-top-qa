@@ -105,3 +105,31 @@ Exception用在，那些可以明确知道会发生的错误，并且建议总�
 在你的例子中，如果x是通过用户接口或外部传递设置的，最好使用exception
 
 如果x仅是同一个程序的内部代码，使用assert
+
+### 如何打印到stderr
+
+问题 [链接](http://stackoverflow.com/questions/5574702/how-to-print-to-stderr-in-python)
+
+经常这么干
+
+    import sys
+    sys.stderr.write('spam\n')
+
+    print >> sys.stderr, 'spam'
+
+    from __future__ import print_function
+    print('spam', file=sys.stderr)
+
+但是不够pythonic, 有没有更好的方法?
+
+回答
+
+我发现这种方式是最短/灵活/可扩展/可读的做法
+
+    from __future__ import print_function
+
+    def warning(*objs):
+        print("WARNING: ", *objs, file=sys.stderr)
+
+
+

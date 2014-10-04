@@ -192,4 +192,18 @@ strftime的%s在windows中无法使用
 
 
 
+### 在python中如何调用外部命令?
+
+问题 [链接](http://stackoverflow.com/questions/89228/calling-an-external-command-in-python) 
+
+Look at the subprocess module in the stdlib:
+
+可以看下标准库中的 [subprocess](http://docs.python.org/library/subprocess.html)
+
+    from subprocess import call
+    call(["ls", "-l"])
+
+subprocess相对于system的好处是, 更灵活
+
+但是 quick/dirty/one time scripts, os.system is enough
 

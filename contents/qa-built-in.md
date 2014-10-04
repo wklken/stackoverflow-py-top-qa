@@ -199,5 +199,36 @@ Python中多行注释的方式是
     A function that can refer to environments that are no longer active.
     A closure allows you to bind variables into a function without passing them as parameters.
 
+### Python Lambda - why?
 
+问题 [链接](http://stackoverflow.com/questions/890128/python-lambda-why)
+
+Are you talking about lambda functions? Like
+
+你是指lambda函数? 例如
+
+    f = lambda x: x**2 + 2*x - 5
+
+非常有用, python支持函数式编程, 你可以将函数作为参数进行传递去做一些事情
+
+例子:
+
+    mult3 = filter(lambda x: x % 3 == 0, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+    # sets mult3 to [3, 6, 9]
+
+这样相对于完整地函数更为简短
+
+    def filterfunc(x):
+        return x % 3 == 0
+    mult3 = filter(filterfunc, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+当然, 这个例子你也可以使用列表解析进行处理
+
+    mult3 = [x for x in [1, 2, 3, 4, 5, 6, 7, 8, 9] if x % 3 == 0]
+
+甚至是
+
+    range(3,10,3)
+
+lambda function may be the shortest way to write something out
 
