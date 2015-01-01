@@ -105,3 +105,60 @@ kwargs返回一个字典，但是这是不是设置默认值的最佳方式？�
 
     def __init__(self, val2="default value", **kwargs):
 
+
+### 构造一个基本的Python迭代器
+
+- 问题
+[链接](http://stackoverflow.com/questions/19151/build-a-basic-python-iterator)
+ 
+- 回答
+
+
+python中的迭代器对象遵守迭代器协议,也就意味着python会提供两个方法:__iter__() 和 next().方法__iter__ 返回迭代器对象并且在循环开始时隐含调用.方法next()返回下一个值并且在每次循环中隐含调用.方法next()在没有任何值可返回时,抛出StopIteration异常.之后被循环构造器捕捉到而停止迭代.
+
+下面是简单的计数器例子:
+```python
+class Counter:
+    def __init__(self, low, high):
+        self.current = low
+        self.high = high
+
+    def __iter__(self):
+        return self
+
+    def next(self): # Python 3: def __next__(self)
+        if self.current > self.high:
+            raise StopIteration
+        else:
+            self.current += 1
+            return self.current - 1
+
+
+for c in Counter(3, 8):
+    print c
+```
+输出:
+```python
+3
+4
+5
+6
+7
+8
+```
+
+使用生成器会更简单,包含了先前的回答:
+```python
+def counter(low, high):
+    current = low
+    while current <= high:
+        yield current
+        current += 1
+
+for c in counter(3, 8):
+    print c
+```
+
+输出是一样的.本质上说,生成器对象支持迭代协议并且大致完成和计数器类相同的事情.
+
+David Mertz的文章, [Iterators and Simple Generators](http://www.ibm.com/developerworks/library/l-pycon.html),是一个非常不错的介绍.
