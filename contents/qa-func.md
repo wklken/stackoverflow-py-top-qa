@@ -105,3 +105,46 @@ kwargs返回一个字典，但是这是不是设置默认值的最佳方式？�
 
     def __init__(self, val2="default value", **kwargs):
 
+### *args和**kwargs是什么
+问题[链接](http://stackoverflow.com/questions/3394835/args-and-kwargs)
+
+真正的语法是`*`和`**`，`*args`和`**kwargs`这两个名字只是约定俗成的，但并没有硬性的规定一定要使用它们。
+
+当你不确定有多少个参数会被传进你的函数时，你可能会使用`*args`，也就是说它允许你给你的函数传递任意数量的参数，举个例子：
+
+    >>> def print_everything(*args):
+            for count, thing in enumerate(args):
+    …           print ‘{0}. {1}’.format(count, thing)
+    …
+    >>> print_everthing(‘apple’, ‘banana’, ‘cabbage’)
+    0. apple
+    1. banana
+    2. cabbage
+
+类似的，`**kwargs`允许你处理那些你没有预先定义好的已命名参数
+
+    >>> def table_everything(*args):
+            for name, value in kwargs.items():
+    …           print ‘{0} = {1}’.format(name, value)
+    …
+    >>> table_everthing(apple = ‘fruit’, cabbage = ‘vegetable’)
+    cabbage = vegetable
+    apple = fruit
+
+你一样可以使用这些命名参数。明确的参数会优先获得值，剩下的都会传递给`*args`和`**kwargs`，命名参数排在参数列表前面，举个例子：
+
+    def table_things(titlestring, **kwargs)
+
+你可以同时使用它们，但是`*args`必须出现在`**kwargs`之前。
+
+调用一个函数时也可以用`*`和`**`语法，举个例子：
+
+    >>> def print_three_things(*args):
+    …           print ‘a = {0}, b = {1}, c = {2}’.format(a, b , c)
+    …
+    >>> mylist = [‘aardvark’, ‘baboon’, ‘cat’]
+    >>> print_three_things(*mylist)
+    a = aardvark, b = baboon, c = cat
+
+正如你看到的，它得到了一个list或者tuple，并解包这个list。通过这种方法，它将这些元素和函数中的参数匹配。当然，你可以同时在函数的定义和调用时使用`*`。
+
