@@ -207,3 +207,33 @@ subprocess相对于system的好处是, 更灵活
 
 但是 quick/dirty/one time scripts, os.system is enough
 
+### 用Python在终端打印出有颜色的文字?
+
+问题[链接](http://stackoverflow.com/questions/287871/print-in-terminal-with-colors-using-python)
+
+某种程度上这取决于你使用的平台。通常的方法是用ANSI转义序列。举个简单的例子，这有一些来自[blender build scripts](https://svn.blender.org/svnroot/bf-blender/trunk/blender/build_files/scons/tools/bcolors.py)的代码：
+
+    class bcolors:
+        HEADER = '\033[95m'
+        OKBLUE = '\033[94m'
+        OKGREEN = '\033[92m'
+        WARNING = '\033[93m'
+        FAIL = '\033[91m'
+        ENDC = '\033[0m'
+
+为了使用上面那种代码，你应该这样做：
+
+    print bcolors.WARNING + "Warning: No active frommets remain. Continue?"
+          + bcolors.ENDC
+
+这在unixes包括OS X，linux和windows(为你提供[enable ansi.sys](http://support.microsoft.com/kb/101875))上会生效。有ansi代码来设置颜色，移动光标，做更多事情。
+
+如果你想了解更为复杂的内容（这听上去好像你正在写一款游戏），你应该深入“cursor”这个没款，它会为你处理很多复杂的部分。[Python Curses HowTO](https://docs.python.org/2/howto/curses.html)是一篇很好的介绍。
+
+如果你是用的不是ASCII（或者说你没有用PC)，你面对诸如ascii字符低于127，’#’，‘@’可能是你得到空格的最好的赌注。如果你确定你的终端使用IBM [extended ascii character set](http://telecom.tbi.net/asc-ibm.html)，你将会有更多的选择，字符176，字符177，字符178，和字符219代表”空格字符”。
+
+一些流行的基于文本的程序，比如”Dwarf Fortress”，仿照文本的模式做成了图形模式，使用传统PC的字体图片。你可以在[Dwarf Frotress Wiki](http://dwarffortresswiki.org/DF2014:Tilesets)找一些这种点阵图看看（[user-made tilesets](http://dwarffortresswiki.org/Tileset_repository)）。
+
+[Text Mode Demo Contest](http://en.wikipedia.org/wiki/TMDC)有更多把图片处理成文本的源码。
+
+嗯...我想这个问题被我扯远了。尽管我现在纠结着去做一款基于文本的史诗冒险游戏。在有颜色的文本这方面，祝你好运。

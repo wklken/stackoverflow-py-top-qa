@@ -338,3 +338,104 @@ Super让你避免明确地引用基类，这是一点。最大的优势是，当
 
         if isinstance(e, collections.Iterable):
             # e is iterable
+
+### 构建一个基本的Python迭代器
+
+问题[链接](http://stackoverflow.com/questions/19151/build-a-basic-python-iterator)
+
+在Python中，迭代器对象遵循迭代器协议，这意味着它提供了两种方法: `__iter__()`和`next()`。`__iter__()`返回一个迭代器对象并且在循环开始时就隐式的被调用。`next()`方法返回下一个值，并在循环的每一次增量中被调用。当没有值需要返回时，`next()`引发一个StopIteration异常，这个异常被循环结构隐式的捕获从而停止迭代。
+
+这有一个简单计数例子：
+
+    class Counter:
+        def __init__(self, low, high):
+            self.current = low
+            self.high = high
+
+        def __iter__(self):
+            return self
+
+        def next(self): # Python 3: def __next__(self)
+            if self.current > self.high:
+                raise StopIteration
+            else:
+                self.current += 1
+                return self.current - 1
+
+    for c in Counter(3, 8):
+        print c
+
+上述会打印出：
+
+    3
+    4
+    5
+    6
+    7
+    8
+
+ 这个用生成器写会更简单一些，下面是之前答案的翻写：
+
+    def counter(low, high):
+        current = low
+        while current <= high:
+            yield current
+            current += 1
+
+    for c in counter(3, 8):
+        print c
+
+打印出来的内容是一样的。在后台，生成器对象支持迭代器协议，大体上对Counter类做一些同样事情。
+
+[Iterators and Simple Generators](http://www.ibm.com/developerworks/library/l-pycon.html)，David Mertz的这篇文章，是一篇对迭代器非常好的介绍。
+
+### 在Python中，抽象类和接口有什么区别？
+
+问题[链接](http://stackoverflow.com/questions/372042/difference-between-abstract-class-and-interface-in-python)
+
+看看下面这个：
+
+    class Abstract1(object):
+        """Some description that tells you it's abstract,
+        often listing the methods you're expected to supply."""
+        def aMethod(self):
+            raise NotImplementedError( "Should have implemented this" )
+
+因为在Python中没有（也不需要）一个正式的接口协议，类Java的抽象类和接口的区别并不存在。如果有人尝试定义一个正式的接口，它其实也是一个抽象类。唯一的不同就是在文档注释的表述。
+
+并且当你使用鸭子类型时，抽象类和接口的区别有点吹毛求疵了。
+
+Java使用接口是因为它没有多重继承。
+
+因为Python有多重继承，你可能还会看到类似这样的东西：
+
+    class SomeAbstraction( object ):
+        pass # lots of stuff - but missing something
+
+    class Mixin1( object ):
+        def something( self ):
+            pass # one implementation
+
+    class Mixin2( object ):
+        def something( self ):
+            pass # another
+
+    class Concrete1( SomeAbstraction, Mixin1 ):
+        pass
+
+    class Concrete2( SomeAbstraction, Mixin2 ):
+        pass
+
+这是一种使用混合抽象超类去创建不相交的具体子类的方法。
+
+### Python 的__slots__
+
+问题[链接](http://stackoverflow.com/questions/472000/python-slots)
+
+引用[Jacob Hallen](http://code.activestate.com/lists/python-list/531365/)：
+
+`__slots__`的正确使用方法是保存对象的空间。取代使用允许任何时间给类添加属性的动态字典，有一种在创建之后不允许添加的静态结构。使用slots节省了给所有对象同一个字典的系统开销。有时候这是一个很有效的优化，但它也会变得毫无用处，前提是Python的解释器足够动态化，可以在确实需要为对象增加某些东西时只需要字典。
+
+不幸的是，使用slots有一个副作用。他们通过一种方法改变了那些带有slots的对象的表现形式，使它们被古怪的控制者和细小的静态归类滥用。这很糟糕，因为古怪的控制者应该滥用元类，而细小的静态归类应该滥用生成器。但是从Python开始，只有这一种显著的方法了。
+
+将CPython做的很聪明，聪明到可以不用`__slots__`保存空间，是一个主要的工作，这也就是为什么它不再P3k的更改列表中（到目前为止）。
