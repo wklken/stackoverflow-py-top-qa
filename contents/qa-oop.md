@@ -388,3 +388,42 @@ Super让你避免明确地引用基类，这是一点。最大的优势是，当
 打印出来的内容是一样的。在后台，生成器对象支持迭代器协议，大体上对Counter类做一些同样事情。
 
 [Iterators and Simple Generators](http://www.ibm.com/developerworks/library/l-pycon.html)，David Mertz的这篇文章，是一篇对迭代器非常好的介绍。
+
+### 在Python中，抽象类和接口有什么区别？
+
+问题[连接](http://stackoverflow.com/questions/372042/difference-between-abstract-class-and-interface-in-python)
+
+看看下面这个：
+
+    class Abstract1(object):
+        """Some description that tells you it's abstract,
+        often listing the methods you're expected to supply."""
+        def aMethod(self):
+            raise NotImplementedError( "Should have implemented this" )
+
+因为在Python中没有（也不需要）一个正式的接口协议，类Java的抽象类和接口的区别并不存在。如果有人尝试定义一个正式的接口，它其实也是一个抽象类。唯一的不同就是在文档注释的表述。
+
+并且当你使用鸭子类型时，抽象类和接口的区别有点吹毛求疵了。
+
+Java使用接口是因为它没有多重继承。
+
+因为Python有多重继承，你可能还会看到类似这样的东西：
+
+    class SomeAbstraction( object ):
+        pass # lots of stuff - but missing something
+
+    class Mixin1( object ):
+        def something( self ):
+            pass # one implementation
+
+    class Mixin2( object ):
+        def something( self ):
+            pass # another
+
+    class Concrete1( SomeAbstraction, Mixin1 ):
+        pass
+
+    class Concrete2( SomeAbstraction, Mixin2 ):
+        pass
+
+这是一种使用混合抽象超类去创建不相交的具体子类的方法。
