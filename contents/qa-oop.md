@@ -391,7 +391,7 @@ Super让你避免明确地引用基类，这是一点。最大的优势是，当
 
 ### 在Python中，抽象类和接口有什么区别？
 
-问题[连接](http://stackoverflow.com/questions/372042/difference-between-abstract-class-and-interface-in-python)
+问题[链接](http://stackoverflow.com/questions/372042/difference-between-abstract-class-and-interface-in-python)
 
 看看下面这个：
 
@@ -427,3 +427,15 @@ Java使用接口是因为它没有多重继承。
         pass
 
 这是一种使用混合抽象超类去创建不相交的具体子类的方法。
+
+### Python 的__slots__
+
+问题[链接](http://stackoverflow.com/questions/472000/python-slots)
+
+引用[Jacob Hallen](http://code.activestate.com/lists/python-list/531365/)：
+
+`__slots__`的正确使用方法是保存对象的空间。取代使用允许任何时间给类添加属性的动态字典，有一种在创建之后不允许添加的静态结构。使用slots节省了给所有对象同一个字典的系统开销。有时候这是一个很有效的优化，但它也会变得毫无用处，前提是Python的解释器足够动态化，可以在确实需要为对象增加某些东西时只需要字典。
+
+不幸的是，使用slots有一个副作用。他们通过一种方法改变了那些带有slots的对象的表现形式，使它们被古怪的控制者和细小的静态归类滥用。这很糟糕，因为古怪的控制者应该滥用元类，而细小的静态归类应该滥用生成器。但是从Python开始，只有这一种显著的方法了。
+
+将CPython做的很聪明，聪明到可以不用`__slots__`保存空间，是一个主要的工作，这也就是为什么它不再P3k的更改列表中（到目前为止）。
