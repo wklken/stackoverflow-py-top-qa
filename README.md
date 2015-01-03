@@ -54,13 +54,8 @@ stackoverflow上Python相关回答整理翻译(相对来说都比较简单/散�
 
 * [其他](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-others.md)
 
-### 待翻译问题链接(还剩40个问题)
+### 待翻译问题链接(还剩35个问题)
 
-http://stackoverflow.com/questions/19151/build-a-basic-python-iterator
-http://stackoverflow.com/questions/3394835/args-and-kwargs
-http://stackoverflow.com/questions/287871/print-in-terminal-with-colors-using-python
-http://stackoverflow.com/questions/372042/difference-between-abstract-class-and-interface-in-python
-http://stackoverflow.com/questions/472000/python-slots
 http://stackoverflow.com/questions/36932/how-can-i-represent-an-enum-in-python
 http://stackoverflow.com/questions/682504/what-is-a-clean-pythonic-way-to-have-multiple-constructors-in-python
 http://stackoverflow.com/questions/509211/pythons-slice-notation
@@ -222,6 +217,8 @@ qa-func.md:问题  (http://stackoverflow.com/questions/36901/what-does-double-st
 
 qa-func.md:问题 (http://stackoverflow.com/questions/1098549/proper-way-to-use-kwargs-in-python)
 
+qa-func.md:问题 (http://stackoverflow.com/questions/3394835/args-and-kwargs)
+
 qa-list.md:问题 (http://stackoverflow.com/questions/509211/the-python-slice-notation)
 
 qa-list.md:问题 (http://stackoverflow.com/questions/53513/python-what-is-the-best-way-to-check-if-a-list-is-empty)
@@ -294,6 +291,12 @@ qa-oop.md:问题 (http://stackoverflow.com/questions/576169/understanding-python
 
 qa-oop.md:问题 (http://stackoverflow.com/questions/1952464/in-python-how-do-i-determine-if-an-object-is-iterable)
 
+qa-oop.md:问题 (http://stackoverflow.com/questions/19151/build-a-basic-python-iterator)
+
+qa-oop.md:问题 (http://stackoverflow.com/questions/372042/difference-between-abstract-class-and-interface-in-python)
+
+qa-oop.md:问题 (http://stackoverflow.com/questions/472000/python-slots)
+
 qa-others.md:问题 (http://stackoverflow.com/questions/170921/should-i-learn-python-2-before-3-or-start-directly-from-python-3)
 
 qa-others.md:问题 (http://stackoverflow.com/questions/1534210/use-different-python-version-with-virtualenv)
@@ -313,6 +316,8 @@ qa-others.md:问题 (http://stackoverflow.com/questions/582336/how-can-you-profi
 qa-others.md:问题 (http://stackoverflow.com/questions/2775864/python-create-unix-timestamp-five-minutes-in-the-future)
 
 qa-others.md:问题 (http://stackoverflow.com/questions/89228/calling-an-external-command-in-python) 
+
+qa-others.md:问题 (http://stackoverflow.com/questions/287871/print-in-terminal-with-colors-using-python)
 
 qa-pip-easy_install.md:问题 (http://stackoverflow.com/questions/2720014/upgrading-all-packages-with-pip)
 
