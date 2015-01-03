@@ -338,3 +338,53 @@ Super让你避免明确地引用基类，这是一点。最大的优势是，当
 
         if isinstance(e, collections.Iterable):
             # e is iterable
+
+### 构建一个基本的Python迭代器
+
+问题[链接](http://stackoverflow.com/questions/19151/build-a-basic-python-iterator)
+
+在Python中，迭代器对象遵循迭代器协议，这意味着它提供了两种方法: `__iter__()`和`next()`。`__iter__()`返回一个迭代器对象并且在循环开始时就隐式的被调用。`next()`方法返回下一个值，并在循环的每一次增量中被调用。当没有值需要返回时，`next()`引发一个StopIteration异常，这个异常被循环结构隐式的捕获从而停止迭代。
+
+这有一个简单计数例子：
+
+    class Counter:
+        def __init__(self, low, high):
+            self.current = low
+            self.high = high
+
+        def __iter__(self):
+            return self
+
+        def next(self): # Python 3: def __next__(self)
+            if self.current > self.high:
+                raise StopIteration
+            else:
+                self.current += 1
+                return self.current - 1
+
+    for c in Counter(3, 8):
+        print c
+
+上述会打印出：
+
+    3
+    4
+    5
+    6
+    7
+    8
+
+ 这个用生成器写会更简单一些，下面是之前答案的翻写：
+
+    def counter(low, high):
+        current = low
+        while current <= high:
+            yield current
+            current += 1
+
+    for c in counter(3, 8):
+        print c
+
+打印出来的内容是一样的。在后台，生成器对象支持迭代器协议，大体上对Counter类做一些同样事情。
+
+[Iterators and Simple Generators](http://www.ibm.com/developerworks/library/l-pycon.html)，David Mertz的这篇文章，是一篇对迭代器非常好的介绍。
