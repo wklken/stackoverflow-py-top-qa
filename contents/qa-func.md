@@ -149,4 +149,36 @@ kwargs返回一个字典，但是这是不是设置默认值的最佳方式？�
 正如你看到的，它得到了一个list或者tuple，并解包这个list。通过这种方法，它将这些元素和函数中的参数匹配。当然，你可以同时在函数的定义和调用时使用`*`。
 
 
-### 在Python中，实现一个复合构造函数
+### 在Python中，如何干净、pythonic的实现一个复合构造函数
+
+问题[链接](http://stackoverflow.com/questions/682504/what-is-a-clean-pythonic-way-to-have-multiple-constructors-in-python)
+
+实际上 `None`比“魔法”值好多了：
+
+    class Cheese():
+        def __init__(self, num_holes = None):
+            if (num_holes is None):
+                …
+
+现在如果你想完全自由地添加更多参数：
+
+    class Cheese():
+        def __init__(self, *args, **kwargs):
+            #args -- tuple of anonymous arguments
+            #kwargs -- dictionary of named arguments
+            self.num_holes = kwargs.get('num_holes',random_holes())
+
+为了更好的解释`*args`和`**kwargs`的概念（实际上你可以修改它们的名字）：
+
+    def f(*args, **kwargs):
+        print 'args: ', args, ' kwargs: ', kwargs
+
+    >>> f('a')
+    args:  ('a',)  kwargs:  {}
+    >>> f(ar='a')
+    args:  ()  kwargs:  {'ar': 'a'}
+    >>> f(1,2,param=3)
+    args:  (1, 2)  kwargs:  {'param': 3}
+
+[http://docs.python.org/reference/expressions.html#calls](http://docs.python.org/reference/expressions.html#calls)
+
