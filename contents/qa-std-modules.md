@@ -206,4 +206,33 @@ urllib2，提供了一些额外的函数，让你可以自定义request headers
     pprint (vars(your_object))
 
 
+### 如何展示一个正在运行的Python应用的堆栈踪迹
 
+问题[链接](http://stackoverflow.com/questions/132058/showing-the-stack-trace-from-a-running-python-application)
+
+我一般在这种情况下用这个模块-当一个进程会跑很长时间，但是有时被莫名其妙而且不重复出现的原因卡住。看上去有点黑客的感觉，并且只在unix上生效（依赖信号）：
+
+    import code, traceback, signal
+
+    def debug(sig, frame):
+        """Interrupt running process, and provide a python prompt for
+        interactive debugging."""
+        d={'_frame':frame}         # Allow access to frame object.
+        d.update(frame.f_globals)  # Unless shadowed by global
+        d.update(frame.f_locals)
+
+        i = code.InteractiveConsole(d)
+        message  = "Signal received : entering python shell.\nTraceback:\n"
+        message += ''.join(traceback.format_stack(frame))
+        i.interact(message)
+
+    def listen():
+        signal.signal(signal.SIGUSR1, debug)  # Register handler
+
+使用时，当你启动程序时，只需要调用listen()这个函数（你甚至可以放到site.py里，对所有Python程序都起效），让它运行起来。任何时候，都可以对进程发出一个SIGUSR1的信号，使用kill或者在Python中：
+
+    os.kill(pid, signal.SIGUSR1)
+
+这会使Python控制台程序在当时停止，并给你展示堆栈的踪迹，允许你操作所有的变量。使用control-d(EOF)继续运行（在发出信号的一刻，通过注释你可以打断任何I/O等等，所以它不是完全无害的）。
+
+我还有一个可以做同样事情的脚本，唯一不同的是它可以和正在运行的进程通过pip互通（允许在后台进行程序排错等等）。粘贴到这可能太长了，我已经把它加进了[python cookbook recipe](http://code.activestate.com/recipes/576515/)。
