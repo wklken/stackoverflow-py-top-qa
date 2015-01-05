@@ -65,3 +65,65 @@ it's a list of public objects of that module -- it overrides the default of hidi
         if is_changed(foo):
             foo = reload(foo)
 
+### 在Python中，如何表示Enum(枚举)
+
+问题[链接](http://stackoverflow.com/questions/36932/how-can-i-represent-an-enum-in-python)
+
+Enums已经添加进了Python 3.4，详见PEP435。同时在pypi下被反向移植进了3.3，3.2，3.1，2.7，2.6，2.5和2.4。
+
+通过`$ pip install enum34`来使用向下兼容的Enum，下载`enum`（没有数字）则会安装完全不同并且有冲突的版本。
+
+    from enum imoprt Enum
+    Animal = Enum(‘Animal’, ‘ant bee cat dog’)
+
+等效的：
+    
+    class Animals(Enum):
+        ant = 1
+        bee = 2
+        cat = 3
+        dog = 4
+
+在早期的版本中，实现枚举的一种方法是：
+
+    def enum(**enums):
+        return type(‘Enum’, (), enums)
+
+使用起来像这样：
+
+    >>> Numbers = enum(ONE=1, TWO=2, THREE='three')
+    >>> Numbers.ONE
+    1
+    >>> Numbers.TWO
+    2
+    >>> Numbers.THREE
+    'three'
+
+也可以轻松的实现自动列举像下面这样：
+
+    def enum(*squential, **named):
+        enums = dict(zip(sequential, range(len(sequential))), **named)
+        return type(‘Enum’, (), enums)
+
+使用起来像这样：
+
+    >>> Numbers = enum('ZERO', 'ONE', 'TWO')
+    >>> Numbers.ZERO
+    0
+    >>> Numbers.ONE
+    1
+
+支持把值转换为名字，可以这样添加：
+
+    def enum(*sequential, **named):
+        enums = dict(zip(sequential, range(len(sequential))), **named)
+        reverse = dict((value, key) for key, value in enums.iteritems())
+        enums['reverse_mapping'] = reverse
+        return type('Enum', (), enums)
+
+这将会根据名字重写任何东西，但是对于渲染你打印出的枚举值很有效。如果反向映射不存在，它会抛出KeyError。看一个例子：
+
+    >>> Numbers.reverse_mapping[‘three’]
+    ’THREE’
+
+
