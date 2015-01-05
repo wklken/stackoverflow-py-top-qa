@@ -377,9 +377,14 @@ qa-string.md:问题 (http://stackoverflow.com/questions/606191/convert-byte-arra
 
 ### contributors
 
-[link](https://github.com/wklken/stackoverflow-py-top-qa/graphs/contributors)
+thx a lot:)
+
+- [wklken](https://github.com/wklken)
+
+- [shnode](https://github.com/shnode)
 
 
+more [link](https://github.com/wklken/stackoverflow-py-top-qa/graphs/contributors)
 
 ### Donation
 
