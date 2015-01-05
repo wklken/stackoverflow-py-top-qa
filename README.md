@@ -54,12 +54,8 @@ stackoverflow上Python相关回答整理翻译(相对来说都比较简单/散�
 
 * [其他](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-others.md)
 
-### 待翻译问题链接(还剩35个问题)
+### 待翻译问题链接(还剩30个问题)
 
-http://stackoverflow.com/questions/36932/how-can-i-represent-an-enum-in-python
-http://stackoverflow.com/questions/682504/what-is-a-clean-pythonic-way-to-have-multiple-constructors-in-python
-http://stackoverflow.com/questions/15376509/when-is-i-x-different-from-i-i-x-in-python
-http://stackoverflow.com/questions/132058/showing-the-stack-trace-from-a-running-python-application
 http://stackoverflow.com/questions/419163/what-does-if-name-main-do
 http://stackoverflow.com/questions/279237/import-a-module-from-a-relative-path
 http://stackoverflow.com/questions/4324558/whats-the-proper-way-to-install-pip-virtualenv-and-distribute-for-python
@@ -140,6 +136,8 @@ qa-control-flow.md:问题 (http://stackoverflow.com/questions/743164/do-while-lo
 
 qa-control-flow.md:问题 (http://stackoverflow.com/questions/135041/should-you-always-favor-xrange-over-range) 
 
+qa-control-flow.md:问题 (http://stackoverflow.com/questions/15376509/when-is-i-x-different-from-i-i-x-in-python)
+
 qa-datetime.md:问题 (http://stackoverflow.com/questions/1697815/how-do-you-convert-a-python-time-struct-time-object-into-a-datetime-object)
 
 qa-datetime.md:问题 (http://stackoverflow.com/questions/415511/how-to-get-current-time-in-python)
@@ -218,6 +216,8 @@ qa-func.md:问题 (http://stackoverflow.com/questions/1098549/proper-way-to-use-
 
 qa-func.md:问题 (http://stackoverflow.com/questions/3394835/args-and-kwargs)
 
+qa-func.md:问题 (http://stackoverflow.com/questions/682504/what-is-a-clean-pythonic-way-to-have-multiple-constructors-in-python)
+
 qa-list.md:问题 (http://stackoverflow.com/questions/509211/the-python-slice-notation)
 
 qa-list.md:问题 (http://stackoverflow.com/questions/53513/python-what-is-the-best-way-to-check-if-a-list-is-empty)
@@ -265,6 +265,8 @@ qa-modules.md:问题 (http://stackoverflow.com/questions/247770/retrieving-pytho
 qa-modules.md:问题 (http://stackoverflow.com/questions/44834/can-someone-explain-all-in-python)
 
 qa-modules.md:问题 (http://stackoverflow.com/questions/437589/how-do-i-unload-reload-a-python-module)
+
+qa-modules.md:问题 (http://stackoverflow.com/questions/36932/how-can-i-represent-an-enum-in-python)
 
 qa-oop.md:问题 (http://stackoverflow.com/questions/2709821/python-self-explained)
 
@@ -345,6 +347,8 @@ qa-std-modules.md:问题 (http://stackoverflow.com/questions/534839/how-to-creat
 qa-std-modules.md:问题 (http://stackoverflow.com/questions/2018026/should-i-use-urllib-or-urllib2-or-requests)
 
 qa-std-modules.md:问题 (http://stackoverflow.com/questions/192109/is-there-a-function-in-python-to-print-all-the-current-properties-and-values-of)
+
+qa-std-modules.md:问题 (http://stackoverflow.com/questions/132058/showing-the-stack-trace-from-a-running-python-application)
 
 qa-string.md:问题 (http://stackoverflow.com/questions/493819/python-join-why-is-it-string-joinlist-instead-of-list-joinstring)
 
