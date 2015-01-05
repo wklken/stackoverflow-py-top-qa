@@ -58,7 +58,6 @@ stackoverflow上Python相关回答整理翻译(相对来说都比较简单/散�
 
 http://stackoverflow.com/questions/36932/how-can-i-represent-an-enum-in-python
 http://stackoverflow.com/questions/682504/what-is-a-clean-pythonic-way-to-have-multiple-constructors-in-python
-http://stackoverflow.com/questions/509211/pythons-slice-notation
 http://stackoverflow.com/questions/15376509/when-is-i-x-different-from-i-i-x-in-python
 http://stackoverflow.com/questions/132058/showing-the-stack-trace-from-a-running-python-application
 http://stackoverflow.com/questions/419163/what-does-if-name-main-do
