@@ -126,4 +126,20 @@ Enums已经添加进了Python 3.4，详见PEP435。同时在pypi下被反向移�
     >>> Numbers.reverse_mapping[‘three’]
     ’THREE’
 
+### if __name__ == “__main__”做了什么？
 
+问题[链接](http://stackoverflow.com/questions/419163/what-does-if-name-main-do)
+
+稍微拓展一下Harley的答案...
+
+当Python的解释器读一个源文件时，它执行了里面能找到的所有代码。在执行之前，它会定义少数几个变量。举个例子，如果Python解释器把该模块（即源文件）当做主程序运行，它就会把特殊的`__name__`变量的值设置为`“__main__”`。如果这个文件被其他模块引用，`__name__`就会被设置为其他模块的名字。
+
+就你的脚本来说，我们假设把它当做主函数来执行，你可能会在命令行上这样用：
+
+    python threading_example.py
+
+设置好特殊变量之后，它会执行`import`声明并加载其他的模块。然后它会预估`def`的缩进，创建一个函数对象和一个指向函数对象的值叫做`myfunction`。之后它将读取`if`语句，确定`__name__`等于`”__main__”`后，执行缩进并展示。
+
+这样做的主要原因是，有时候你写了一个可以直接执行的模块（一个`.py`文件），同时，它也可以被其他模块引用。通过执行主函数检查，你可以让你的代码只在作为主程序时执行，而在被其他模块引用或调用其中的函数时不执行。
+
+[这页](http://ibiblio.org/g2swap/byteofpython/read/module-name.html)可以看到更多的细节。
