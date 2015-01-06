@@ -54,9 +54,8 @@ stackoverflow上Python相关回答整理翻译(相对来说都比较简单/散�
 
 * [其他](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-others.md)
 
-### 待翻译问题链接(还剩29个问题)
+### 待翻译问题链接(还剩28个问题)
 
-http://stackoverflow.com/questions/279237/import-a-module-from-a-relative-path
 http://stackoverflow.com/questions/4324558/whats-the-proper-way-to-install-pip-virtualenv-and-distribute-for-python
 http://stackoverflow.com/questions/306313/python-is-operator-behaves-unexpectedly-with-integers
 http://stackoverflow.com/questions/455612/limiting-floats-to-two-decimal-points
@@ -268,6 +267,8 @@ qa-modules.md:问题 (http://stackoverflow.com/questions/437589/how-do-i-unload-
 qa-modules.md:问题 (http://stackoverflow.com/questions/36932/how-can-i-represent-an-enum-in-python)
 
 qa-modules.md:问题 (http://stackoverflow.com/questions/419163/what-does-if-name-main-do)
+
+qa-modules.md:问题 (http://stackoverflow.com/questions/279237/import-a-module-from-a-relative-path)
 
 qa-oop.md:问题 (http://stackoverflow.com/questions/2709821/python-self-explained)
 

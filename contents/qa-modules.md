@@ -143,3 +143,32 @@ Enums已经添加进了Python 3.4，详见PEP435。同时在pypi下被反向移�
 这样做的主要原因是，有时候你写了一个可以直接执行的模块（一个`.py`文件），同时，它也可以被其他模块引用。通过执行主函数检查，你可以让你的代码只在作为主程序时执行，而在被其他模块引用或调用其中的函数时不执行。
 
 [这页](http://ibiblio.org/g2swap/byteofpython/read/module-name.html)可以看到更多的细节。
+
+### 通过相对路径引用一个模块
+
+问题[链接](http://stackoverflow.com/questions/279237/import-a-module-from-a-relative-path)
+
+假设你的两个文件夹都是真实的python包（都有`__init__.py`文件在里面），这里有一个可以安全的把相对路径模块包含进本地的脚本。
+
+我假设你想这样做，因为你需要在脚本中包含一系列的模块。我在许多产品的生产环境和不同的情景下用过这个：调用其他文件夹下的脚本或者在不打开一个新的解释器的情况下在Python中执行。
+
+    import os, sys, inspect
+    # realpath() will make your script run, even if you symlink it :)
+    cmd_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0]))
+    if cmd_folder not in sys.path:
+        sys.path.insert(0, cmd_folder)
+
+    # use this if you want to include modules from a subfolder
+    cmd_subfolder=os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe() ))[0],"subfolder")))
+    if cmd_subfolder not in sys.path:
+        sys.path.insert(0, cmd_subfolder)
+
+    # Info:
+    # cmd_folder = os.path.dirname(os.path.abspath(__file__)) # DO NOT USE__file__ !!!
+    # __file__ fails if script is called in different ways on Windows
+    # __file__ fails if someone does os.chdir() before
+    # sys.argv[0] also fails because it doesn't not always contains the path
+
+通过这个途径，确实迫使Python使用你的模块，而不用系统自带的那些。
+
+但是注意。在`egg`文件中的模块会发生什么我确实不知道。可能会失败。如果你知道更好的解决办法请留言，我会花几个小时去改进它。
