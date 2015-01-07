@@ -86,3 +86,58 @@ Pip简介
 
     pip提供unstall命令
     如果中途安装失败，pip will leave you in a clean state.
+
+### 如何在正确使用pip，virtualenv，distribute构建Python环境
+
+问题[链接](http://stackoverflow.com/questions/4324558/whats-the-proper-way-to-install-pip-virtualenv-and-distribute-for-python)
+
+你可以不向Python本身添加任何东西。
+
+你不需要sudo或者任何权限。
+
+你不需要编辑任何文件。
+
+在自引导的虚拟环境里安装virtualenv。通过这个虚拟环境，它可以创建更多。自从virtualenv搭载了pip和distribute，你就可以从其中一个获得所有东西。
+
+1. 下载virtualenv:
+    http://pypi.python.org/pypi/virtualenv
+    https://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.9.tar.gz(实际上最好下载最新的版本!)
+2. 解压源码
+3. 用解压好的源文件创建一个干净的虚拟环境。选择正确的命令，虚拟环境会自带pip和distribute。
+4. 在virtualenv中安装virtualenv
+5. 使用第一个自建的环境去创建更多！
+
+有一个bash的简单例子：
+
+    # Select current version of virtualenv:
+    VERSION=1.6.4
+    # Name your first "bootstrap" environment:
+    INITIAL_ENV=py-env0
+    # Options for your first environment:
+    ENV_OPTS='--no-site-packages --distribute'
+    # Set to whatever python interpreter you want for your first environment:
+    PYTHON=$(which python)
+    URL_BASE=http://pypi.python.org/packages/source/v/virtualenv
+
+    # --- Real work starts here ---
+    curl -O $URL_BASE/virtualenv-$VERSION.tar.gz
+    tar xzf virtualenv-$VERSION.tar.gz
+    # Create the first "bootstrap" environment.
+    $PYTHON virtualenv-$VERSION/virtualenv.py $ENV_OPTS $INITIAL_ENV
+    # Don't need this anymore.
+    rm -rf virtualenv-$VERSION
+    # Install virtualenv into the environment.
+    $INITIAL_ENV/bin/pip install virtualenv-$VERSION.tar.gz
+
+现在你可以用你的自引导环境去创建更多：
+
+    # Create a second environment from the first:
+    $INITIAL_ENV/bin/virtualenv --no-site-packages --distribute py-env1
+    # Create more:
+    $INITIAL_ENV/bin/virtualenv py-env2
+
+疯狂吧！
+
+更新
+
+`—no-site-packages` and`—distribute`现在是默认的了（运行`virtualenv -h`）所以你可以通过`python virtualenv.py bootstrap`或者`python3 virtualenv.py bootstrap`安装你的引导。

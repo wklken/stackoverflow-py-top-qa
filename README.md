@@ -54,9 +54,8 @@ stackoverflow上Python相关回答整理翻译(相对来说都比较简单/散�
 
 * [其他](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-others.md)
 
-### 待翻译问题链接(还剩28个问题)
+### 待翻译问题链接(还剩27个问题)
 
-http://stackoverflow.com/questions/4324558/whats-the-proper-way-to-install-pip-virtualenv-and-distribute-for-python
 http://stackoverflow.com/questions/306313/python-is-operator-behaves-unexpectedly-with-integers
 http://stackoverflow.com/questions/455612/limiting-floats-to-two-decimal-points
 http://stackoverflow.com/questions/54867/old-style-and-new-style-classes-in-python
@@ -333,6 +332,8 @@ qa-pip-easy_install.md:问题 (http://stackoverflow.com/questions/1550226/python
 qa-pip-easy_install.md:问题 (http://stackoverflow.com/questions/739993/get-a-list-of-installed-python-modules)
 
 qa-pip-easy_install.md:问题 (http://stackoverflow.com/questions/3220404/why-use-pip-over-easy-install)
+
+qa-pip-easy_install.md:问题 (http://stackoverflow.com/questions/4324558/whats-the-proper-way-to-install-pip-virtualenv-and-distribute-for-python)
 
 qa-std-modules.md:问题 (http://stackoverflow.com/questions/712791/json-and-simplejson-module-differences-in-python)
 
