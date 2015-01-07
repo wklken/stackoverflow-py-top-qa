@@ -73,6 +73,8 @@ Python 3.0 beta: 同2.6，但不支持027这种语法
 
 ### Python的”is”语句在数字类型上表现不正常
 
+问题[链接](http://stackoverflow.com/questions/306313/pythons-is-operator-behaves-unexpectedly-with-integers)
+
 看看这个：
 
     >>> a = 256
@@ -94,7 +96,9 @@ Python 3.0 beta: 同2.6，但不支持027这种语法
 
 ### 将浮点型数字的小数限制为两位
 
-你陷入了一个浮点型数据的很老的错误，即所有的错误都不能表示。命令行只能告诉你内存中的全长小数。在浮点里你四舍五入到一个同样的数字。自从计算机是二进制开始，他们把浮点数保存为整数然后除一个2的幂。两位精确的数字有53比特（16位）的精度，常规的浮点数有24比特（8位）的精度。[floating point in python uses double precision](https://docs.python.org/2/tutorial/floatingpoint.html)保存值。
+问题[链接](http://stackoverflow.com/questions/455612/limiting-floats-to-two-decimal-points)
+
+你陷入了一个浮点型数据的很老的错误，即所有的数字都不能表示。命令行只能告诉你内存中的全长小数。在浮点里你四舍五入到一个同样的数字。自从计算机是二进制开始，他们把浮点数保存为整数然后除一个2的幂。两位精确的数字有53比特（16位）的精度，常规的浮点数有24比特（8位）的精度。[floating point in python uses double precision](https://docs.python.org/2/tutorial/floatingpoint.html)保存值。
 
 举个例子：
 
