@@ -71,5 +71,23 @@ Python 3.0 beta: 同2.6，但不支持027这种语法
 
 对应文档 [int()](http://docs.python.org/2/library/functions.html#int) [str()](http://docs.python.org/2/library/functions.html#str)
 
+### Python的”is”语句在数字类型上表现不正常
 
+看看这个：
 
+    >>> a = 256
+    >>> b = 256
+    >>> id(a)
+    9987148
+    >>> id(b)
+    9987148
+    >>> a = 257
+    >>> b = 257
+    >>> id(a)
+    11662816
+    >>> id(b)
+    11662828
+
+编辑：这是我在Python文档中发现的，[7.2.1, “Plain Integer Objects”](https://docs.python.org/2/c-api/int.html):
+
+    正在执行的程序会保持一组从-5到256的数值型对象，当你创建一个在这个范围内的数字，你实际上得到了一个已存在的对象的反馈。所以

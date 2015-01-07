@@ -54,9 +54,8 @@ stackoverflow上Python相关回答整理翻译(相对来说都比较简单/散�
 
 * [其他](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-others.md)
 
-### 待翻译问题链接(还剩27个问题)
+### 待翻译问题链接(还剩26个问题)
 
-http://stackoverflow.com/questions/306313/python-is-operator-behaves-unexpectedly-with-integers
 http://stackoverflow.com/questions/455612/limiting-floats-to-two-decimal-points
 http://stackoverflow.com/questions/54867/old-style-and-new-style-classes-in-python
 http://stackoverflow.com/questions/432842/how-do-you-get-the-logical-xor-of-two-variables-in-python
@@ -252,6 +251,8 @@ qa-math.md:问题 (http://stackoverflow.com/questions/209513/convert-hex-string-
 qa-math.md:问题 (http://stackoverflow.com/questions/1267869/how-can-i-force-division-to-be-floating-point-in-python)
 
 qa-math.md:问题 (http://stackoverflow.com/questions/961632/converting-integer-to-string-in-python)
+
+qa-math.md:问题 (http://stackoverflow.com/questions/306313/python-is-operator-behaves-unexpectedly-with-integers)
 
 qa-modules.md:问题 (http://stackoverflow.com/questions/448271/what-is-init-py-for)
 
