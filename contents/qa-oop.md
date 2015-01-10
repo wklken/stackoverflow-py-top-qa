@@ -439,3 +439,18 @@ Java使用接口是因为它没有多重继承。
 不幸的是，使用slots有一个副作用。他们通过一种方法改变了那些带有slots的对象的表现形式，使它们被古怪的控制者和细小的静态归类滥用。这很糟糕，因为古怪的控制者应该滥用元类，而细小的静态归类应该滥用生成器。但是从Python开始，只有这一种显著的方法了。
 
 将CPython做的很聪明，聪明到可以不用`__slots__`保存空间，是一个主要的工作，这也就是为什么它不在P3k的更改列表中（到目前为止）。
+
+### Python中，新式类和旧式类的区别
+
+问题[链接](http://stackoverflow.com/questions/54867/what-is-the-difference-between-old-style-and-new-style-classes-in-python)
+根据[https://docs.python.org/2/reference/datamodel.html#new-style-and-classic-classes](https://docs.python.org/2/reference/datamodel.html#new-style-and-classic-classeshttps://docs.python.org/2/reference/datamodel.html#new-style-and-classic-classes):
+
+    Up to Python 2.1, old-style classes were the only flavour available to the user. The concept of (old-style) class is unrelated to the concept of type: if x is an instance of an old-style class, then x.__class__ designates the class of x, but type(x) is always <type 'instance'>. This reflects the fact that all old-style instances, independently of their class, are implemented with a single built-in type, called instance.
+
+    New-style classes were introduced in Python 2.2 to unify classes and types. A new-style class neither more nor less than a user-defined type. If x is an instance of a new-style class, then type(x) is the same as x.__class__.
+
+    The major motivation for introducing new-style classes is to provide a unified object model with a full meta-model. It also has a number of immediate benefits, like the ability to subclass most built-in types, or the introduction of "descriptors", which enable computed properties.
+
+    For compatibility reasons, classes are still old-style by default. New-style classes are created by specifying another new-style class (i.e. a type) as a parent class, or the "top-level type" object if no other parent is needed. The behaviour of new-style classes differs from that of old-style classes in a number of important details in addition to what type returns. Some of these changes are fundamental to the new object model, like the way special methods are invoked. Others are "fixes" that could not be implemented before for compatibility concerns, like the method resolution order in case of multiple inheritance.
+
+    Python 3 only has new-style classes. No matter if you subclass from object or not, classes are new-style in Python 3. It is however recommended that you still subclass from object.

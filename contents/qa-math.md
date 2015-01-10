@@ -125,3 +125,11 @@ Python 3.0 beta: 同2.6，但不支持027这种语法
     13.949999999999999
 
 作为货币如果你只需要小数点后两位的位置，那么你有一对比较好的选择，用整数存储值为分而不是元，之后除以100来得到元。或者用修正过的小数，比如[decimal](https://docs.python.org/2/library/decimal.html)
+
+### 在Python中如何表示逻辑的异或
+
+问题[链接](http://stackoverflow.com/questions/432842/how-do-you-get-the-logical-xor-of-two-variables-in-python)
+
+如果你已经将输入值设为布尔型，那么 != 就是异或。
+
+    bool(a) != boll(b)

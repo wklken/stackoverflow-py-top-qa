@@ -181,4 +181,3 @@ kwargs返回一个字典，但是这是不是设置默认值的最佳方式？�
     args:  (1, 2)  kwargs:  {'param': 3}
 
 [http://docs.python.org/reference/expressions.html#calls](http://docs.python.org/reference/expressions.html#calls)
-

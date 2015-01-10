@@ -172,3 +172,17 @@ Enums已经添加进了Python 3.4，详见PEP435。同时在pypi下被反向移�
 通过这个途径，确实迫使Python使用你的模块，而不用系统自带的那些。
 
 但是注意。在`egg`文件中的模块会发生什么我确实不知道。可能会失败。如果你知道更好的解决办法请留言，我会花几个小时去改进它。
+
+### Python中如何进行间接引用
+
+问题[链接](http://stackoverflow.com/questions/72852/how-to-do-relative-imports-in-python)
+
+看上去每个人都希望告诉你你该怎么做好过只回答这个问题。
+
+问题在于你在运行一个作为`’__main__’`的模块，向解释器传递mod1.py作为一个参数。
+
+来自[PEP 328](http://stackoverflow.com/questions/72852/how-to-do-relative-imports-in-python)：
+
+    Relative imports use a module's __name__ attribute to determine that module's position in the package hierarchy. If the module's name does not contain any package information (e.g. it is set to '__main__') then relative imports are resolved as if the module were a top level module, regardless of where the module is actually located on the file system.
+
+在Python 2.6中，他们添加了为主模块表现模块关系的功能，[PEP 366](https://www.python.org/dev/peps/pep-0366/)描述了这个功能。

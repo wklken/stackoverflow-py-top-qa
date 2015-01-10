@@ -332,3 +332,23 @@ sum
     100000 loops, best of 3: 4.24 usec per loop
     $ python -mtimeit -s'xs=range(10)' '[x+2 for x in xs]'
     100000 loops, best of 3: 2.32 usec per loop
+
+### 列表和元组有什么区别
+
+问题[链接](http://stackoverflow.com/questions/626759/whats-the-difference-between-list-and-tuples)
+
+除了元组是不可变的之外，还有一个语义的区别去控制它们的使用。元组是各种结构类型混杂的（比如，它们的入口有不同的含义），列表则是一致的序列。元组有结构，列表有顺序。
+
+根据这种据别，刻意让代码更为明确和易理解。
+
+用页数和行数来定义一本书中的位置的例子：
+
+    my_location = (42, 11)  # page number, line number
+
+然后你可以在一个字典里把这个当做键保存位置的记录。然而列表可以用来存储多点定位。通常会想添加或移除一个列表中的某个定位，所以列表是可变的。另一方面，为了保持行数的完好无损，而改变页书的值似乎说不通，这很可能会给你一个新的定位。而且，可能有很完美的解决办法用来处理正确的行数（而不是替换所有的元组）
+
+这一点，有很多有趣的文章，比如[”Python Tuples are Not Just Constant Lists”](http://jtauber.com/blog/2006/04/15/python_tuples_are_not_just_constant_lists/) or [“Understanding tuples vs. lists in Python”](http://news.e-scribe.com/397)。Python官方文档也[提到了](https://docs.python.org/2/tutorial/datastructures.html#tuples-and-sequences)（“元组是不可变对象，并且用于包含哪些混杂的序列…”)。
+
+在一个动态类型语言比如haskell，元组通常有不同的类型，并且元组的长度必须是固定的。在列表中值必须是同一种类型，值长度不需要固定。所以区别很明显。
+
+最后，Python中还有一个[nametuple](https://docs.python.org/dev/library/collections.html#collections.namedtuple)，合理表示一个元组已经有的结构。这些突出的想法明确了元组是类和实例的一种轻型的替换。

@@ -56,11 +56,7 @@ stackoverflow上Python相关回答整理翻译(相对来说都比较简单/散�
 
 ### 待翻译问题链接(还剩25个问题)
 
-http://stackoverflow.com/questions/54867/old-style-and-new-style-classes-in-python
-http://stackoverflow.com/questions/432842/how-do-you-get-the-logical-xor-of-two-variables-in-python
-http://stackoverflow.com/questions/626759/whats-the-difference-between-list-and-tuples
 http://stackoverflow.com/questions/682367/good-python-modules-for-fuzzy-string-comparison
-http://stackoverflow.com/questions/72852/how-to-do-relative-imports-in-python
 http://stackoverflow.com/questions/36901/what-does-double-star-and-star-do-for-python-parameters
 http://stackoverflow.com/questions/5082452/python-string-formatting-vs-format
 http://stackoverflow.com/questions/261638/how-do-i-protect-python-code
@@ -243,6 +239,8 @@ qa-list.md:问题 (http://stackoverflow.com/questions/952914/making-a-flat-list-
 
 qa-list.md:问题 (http://stackoverflow.com/questions/1247486/python-list-comprehension-vs-map)
 
+qa-list.md:问题 (http://stackoverflow.com/questions/626759/whats-the-difference-between-list-and-tuples)
+
 qa-math.md:问题 (http://stackoverflow.com/questions/1476/how-do-you-express-binary-literals-in-python)
 
 qa-math.md:问题 (http://stackoverflow.com/questions/209513/convert-hex-string-to-int-in-python)
@@ -254,6 +252,8 @@ qa-math.md:问题 (http://stackoverflow.com/questions/961632/converting-integer-
 qa-math.md:问题 (http://stackoverflow.com/questions/306313/python-is-operator-behaves-unexpectedly-with-integers)
 
 qa-math.md:问题 (http://stackoverflow.com/questions/455612/limiting-floats-to-two-decimal-points)
+
+qa-math.md:问题 (http://stackoverflow.com/questions/432842/how-do-you-get-the-logical-xor-of-two-variables-in-python)
 
 qa-modules.md:问题 (http://stackoverflow.com/questions/448271/what-is-init-py-for)
 
@@ -270,6 +270,8 @@ qa-modules.md:问题 (http://stackoverflow.com/questions/36932/how-can-i-represe
 qa-modules.md:问题 (http://stackoverflow.com/questions/419163/what-does-if-name-main-do)
 
 qa-modules.md:问题 (http://stackoverflow.com/questions/279237/import-a-module-from-a-relative-path)
+
+qa-modules.md:问题 (http://stackoverflow.com/questions/72852/how-to-do-relative-imports-in-python)
 
 qa-oop.md:问题 (http://stackoverflow.com/questions/2709821/python-self-explained)
 
@@ -300,6 +302,8 @@ qa-oop.md:问题 (http://stackoverflow.com/questions/19151/build-a-basic-python-
 qa-oop.md:问题 (http://stackoverflow.com/questions/372042/difference-between-abstract-class-and-interface-in-python)
 
 qa-oop.md:问题 (http://stackoverflow.com/questions/472000/python-slots)
+
+qa-oop.md:问题 (http://stackoverflow.com/questions/54867/old-style-and-new-style-classes-in-python)
 
 qa-others.md:问题 (http://stackoverflow.com/questions/170921/should-i-learn-python-2-before-3-or-start-directly-from-python-3)
 
