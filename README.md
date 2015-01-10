@@ -54,9 +54,8 @@ stackoverflow上Python相关回答整理翻译(相对来说都比较简单/散�
 
 * [其他](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-others.md)
 
-### 待翻译问题链接(还剩25个问题)
+### 待翻译问题链接(还剩20个问题)
 
-http://stackoverflow.com/questions/682367/good-python-modules-for-fuzzy-string-comparison
 http://stackoverflow.com/questions/36901/what-does-double-star-and-star-do-for-python-parameters
 http://stackoverflow.com/questions/5082452/python-string-formatting-vs-format
 http://stackoverflow.com/questions/261638/how-do-i-protect-python-code
