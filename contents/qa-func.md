@@ -181,3 +181,70 @@ kwargs返回一个字典，但是这是不是设置默认值的最佳方式？�
     args:  (1, 2)  kwargs:  {'param': 3}
 
 [http://docs.python.org/reference/expressions.html#calls](http://docs.python.org/reference/expressions.html#calls)
+
+### Python参数中，\**和\*是干什么的
+
+问题[链接](http://stackoverflow.com/questions/36901/what-does-double-star-and-star-do-for-python-parameters)
+
+`*args`和`**args`是一种惯用的方法，允许不定数量的参数传入函数，在Python文档中有描述[more on defining functions](https://docs.python.org/dev/tutorial/controlflow.html#more-on-defining-functions)
+
+`*args`会把所有的参数当做一个列表传递：
+
+    In [1]: def foo(*args):
+       ...:     for a in args:
+       ...:         print a
+       ...:
+       ...:
+
+    In [2]: foo(1)
+    1
+
+
+    In [4]: foo(1,2,3)
+    1
+    2
+    3
+
+`**kwargs`会把除了那些符合形参的参数作为一个字典传递：
+
+    In [5]: def bar(**kwargs):
+       ...:     for a in kwargs:
+       ...:         print a, kwargs[a]
+       ...:
+       ...:
+
+    In [6]: bar(name="one", age=27)
+    age 27
+    name one
+
+这两种用法都可以混合进普通参数，允许传入一组固定的的和可变的参数：
+
+    def foo(kind, *args, **kwargs):
+        pass
+
+另一种\*的用法就是在调用一个函数的时候解包参数列表
+
+    In [9]: def foo(bar, lee):
+       ...:     print bar, lee
+       ...:
+       ...:
+
+    In [10]: l = [1,2]
+
+    In [11]: foo(*l)
+    1 2
+
+在Python 3中，可以把\*用在一个待赋值对象的左边（[Extended Iterable Upacking](https://www.python.org/dev/peps/pep-3132/)）：
+
+    first, *rest = [1, 2, 3, 4]
+    first, *l, last = [1, 2, 3, 4]
+
+### 为什么在Python的函数中，代码运行速度更快
+
+你可能要问为什么在存储在本地变量的比全局变量运行速度更快。这是一个CPython执行细节。
+
+记住Cpython在解释器运行时，是编译成字节编码的。当一个函数编译完成，本地变量就全部被存储在一个固定长度的数组中了（而不是字典）而且名字被指定了索引。这是合理的，因为你不能自动添加本地变量到你的函数中去。在指针中循环检索一个本地变量加入到列表中，并且计算琐碎的`PyObject`的增加。
+
+不同的是全局查找（`LOAD_GLOBAL`），是一个涉及哈希查找的字典等等。顺带的，这就是为什么当你需要一个全局变量时，要说明`global i`。如果你曾经在一个范围内给一个变量赋值了，那么编译器会为它的入口发布一些`STORE_FAST`。除非你告诉它不要这样做。
+
+顺便说一句，全局查找仍然是非常棒的。属性查找`foo.bar`是非常慢的。

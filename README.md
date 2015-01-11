@@ -54,13 +54,8 @@ stackoverflow上Python相关回答整理翻译(相对来说都比较简单/散�
 
 * [其他](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-others.md)
 
-### 待翻译问题链接(还剩20个问题)
+### 待翻译问题链接(还剩15个问题)
 
-http://stackoverflow.com/questions/36901/what-does-double-star-and-star-do-for-python-parameters
-http://stackoverflow.com/questions/5082452/python-string-formatting-vs-format
-http://stackoverflow.com/questions/261638/how-do-i-protect-python-code
-http://stackoverflow.com/questions/944592/best-practice-for-python-assert
-http://stackoverflow.com/questions/11241523/why-does-python-code-run-faster-in-a-function
 http://stackoverflow.com/questions/2068372/fastest-way-to-list-all-primes-below-n-in-python
 http://stackoverflow.com/questions/42950/get-last-day-of-the-month-in-python
 http://stackoverflow.com/questions/6618002/python-property-versus-getters-and-setters
@@ -166,6 +161,8 @@ qa-exception.md:问题 (http://stackoverflow.com/questions/944592/best-practice-
 
 qa-exception.md:问题 (http://stackoverflow.com/questions/5574702/how-to-print-to-stderr-in-python)
 
+qa-exception.md:问题 (http://stackoverflow.com/questions/944592/best-practice-for-python-assert)
+
 qa-file.md:问题 (http://stackoverflow.com/questions/82831/how-do-i-check-if-a-file-exists-using-python)
 
 qa-file.md:问题 (http://stackoverflow.com/questions/273192/python-best-way-to-create-directory-if-it-doesnt-exist-for-file-write)
@@ -207,6 +204,10 @@ qa-func.md:问题 (http://stackoverflow.com/questions/1098549/proper-way-to-use-
 qa-func.md:问题 (http://stackoverflow.com/questions/3394835/args-and-kwargs)
 
 qa-func.md:问题 (http://stackoverflow.com/questions/682504/what-is-a-clean-pythonic-way-to-have-multiple-constructors-in-python)
+
+qa-func.md:问题 (http://stackoverflow.com/questions/36901/what-does-double-star-and-star-do-for-python-parameters)
+
+qa-func.md:问题 (http://stackoverflow.com/questions/11241523/why-does-python-code-run-faster-in-a-function)
 
 qa-list.md:问题 (http://stackoverflow.com/questions/509211/the-python-slice-notation)
 
@@ -325,6 +326,8 @@ qa-others.md:问题 (http://stackoverflow.com/questions/2775864/python-create-un
 qa-others.md:问题 (http://stackoverflow.com/questions/89228/calling-an-external-command-in-python) 
 
 qa-others.md:问题 (http://stackoverflow.com/questions/287871/print-in-terminal-with-colors-using-python)
+
+qa-others.md:问题 (http://stackoverflow.com/questions/261638/how-do-i-protect-python-code)
 
 qa-pip-easy_install.md:问题 (http://stackoverflow.com/questions/2720014/upgrading-all-packages-with-pip)
 
