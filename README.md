@@ -54,10 +54,8 @@ stackoverflow上Python相关回答整理翻译(相对来说都比较简单/散�
 
 * [其他](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-others.md)
 
-### 待翻译问题链接(还剩15个问题)
+### 待翻译问题链接(还剩14个问题)
 
-http://stackoverflow.com/questions/2068372/fastest-way-to-list-all-primes-below-n-in-python
-http://stackoverflow.com/questions/42950/get-last-day-of-the-month-in-python
 http://stackoverflow.com/questions/6618002/python-property-versus-getters-and-setters
 http://stackoverflow.com/questions/904036/chain-calling-parent-constructors-in-python
 http://stackoverflow.com/questions/17160162/what-is-in-python-2-7
@@ -254,6 +252,8 @@ qa-math.md:问题 (http://stackoverflow.com/questions/306313/python-is-operator-
 qa-math.md:问题 (http://stackoverflow.com/questions/455612/limiting-floats-to-two-decimal-points)
 
 qa-math.md:问题 (http://stackoverflow.com/questions/432842/how-do-you-get-the-logical-xor-of-two-variables-in-python)
+
+qa-math.md:问题 (http://stackoverflow.com/questions/2068372/fastest-way-to-list-all-primes-below-n-in-python)
 
 qa-modules.md:问题 (http://stackoverflow.com/questions/448271/what-is-init-py-for)
 
