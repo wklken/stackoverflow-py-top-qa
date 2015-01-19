@@ -54,12 +54,8 @@ stackoverflow上Python相关回答整理翻译(相对来说都比较简单/散�
 
 * [其他](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-others.md)
 
-### 待翻译问题链接(还剩12个问题)
+### 待翻译问题链接(还剩9个问题)
 
-http://stackoverflow.com/questions/191673/preferred-python-unit-testing-framework
-http://stackoverflow.com/questions/61151/where-do-the-python-unit-tests-go
-http://stackoverflow.com/questions/1301346/the-meaning-of-a-single-and-a-double-underscore-before-an-object-name-in-python
-http://stackoverflow.com/questions/6344076/differences-between-distribute-distutils-setuptools-and-distutils2
 http://stackoverflow.com/questions/1549801/differences-between-isinstance-and-type-in-python
 http://stackoverflow.com/questions/323972/is-there-any-way-to-kill-a-thread-in-python
 http://stackoverflow.com/questions/1485841/behaviour-of-increment-and-decrement-operators-in-python
@@ -308,6 +304,8 @@ qa-oop.md:问题 (http://stackoverflow.com/questions/6618002/python-property-ver
 
 qa-oop.md:问题 (http://stackoverflow.com/questions/904036/chain-calling-parent-constructors-in-python)
 
+qa-oop.md:问题 (http://stackoverflow.com/questions/1301346/the-meaning-of-a-single-and-a-double-underscore-before-an-object-name-in-python)
+
 qa-others.md:问题 (http://stackoverflow.com/questions/170921/should-i-learn-python-2-before-3-or-start-directly-from-python-3)
 
 qa-others.md:问题 (http://stackoverflow.com/questions/1534210/use-different-python-version-with-virtualenv)
@@ -331,6 +329,12 @@ qa-others.md:问题 (http://stackoverflow.com/questions/89228/calling-an-externa
 qa-others.md:问题 (http://stackoverflow.com/questions/287871/print-in-terminal-with-colors-using-python)
 
 qa-others.md:问题 (http://stackoverflow.com/questions/261638/how-do-i-protect-python-code)
+
+qa-others.md:问题 (http://stackoverflow.com/questions/191673/preferred-python-unit-testing-framework)
+
+qa-others.md:问题 (http://stackoverflow.com/questions/61151/where-do-the-python-unit-tests-go)
+
+qa-others.md:问题 (http://stackoverflow.com/questions/6344076/differences-between-distribute-distutils-setuptools-and-distutils2)
 
 qa-pip-easy_install.md:问题 (http://stackoverflow.com/questions/2720014/upgrading-all-packages-with-pip)
 

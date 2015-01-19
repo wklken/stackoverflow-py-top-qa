@@ -473,3 +473,42 @@ Java使用接口是因为它没有多重继承。
 你正在做的事情，确实是值得推荐的（对于Python 2.x来说）
 
 是否把类明确的传递给`super`是一个风格而不是功能上的问题。把类明确的传递给`super`符合Python哲学的“明了胜于晦涩”。
+
+### Python中，一个对象前面带单下划线和双下划线的含义
+
+问题[链接](http://stackoverflow.com/questions/1301346/the-meaning-of-a-single-and-a-double-underscore-before-an-object-name-in-python)
+
+单下划线
+
+在一个类中，单下划线开头的单纯为了告诉其他程序员，这些属性或者方法意味着私有的。然而，这些属性或者方法本身并没什么特别的。
+
+引述[PEP-8](http://www.python.org/dev/peps/pep-0008/)：
+
+    _single_leading_underscore: weak "internal use" indicator. E.g. from M import * does not import objects whose name starts with an underscore.
+
+双下划线
+
+来自[Python文档](http://docs.python.org/tutorial/classes.html#private-variables-and-class-local-references)：
+
+    Any identifier of the form __spam (at least two leading underscores, at most one trailing underscore) is textually replaced with _classname__spam, where classname is the current class name with leading underscore(s) stripped. This mangling is done without regard to the syntactic position of the identifier, so it can be used to define class-private instance and class variables, methods, variables stored in globals, and even variables stored in instances. private to this class on instances of other classes.
+
+同一页还有一个警告：
+
+    Name mangling is intended to give classes an easy way to define “private” instance variables and methods, without having to worry about instance variables defined by derived classes, or mucking with instance variables by code outside the class. Note that the mangling rules are designed mostly to avoid accidents; it still is possible for a determined soul to access or modify a variable that is considered private.
+
+举例
+
+    >>> class MyClass():
+    ...     def __init__(self):
+    ...             self.__superprivate = "Hello"
+    ...             self._semiprivate = ", world!"
+    ...
+    >>> mc = MyClass()
+    >>> print mc.__superprivate
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    AttributeError: myClass instance has no attribute '__superprivate'
+    >>> print mc._semiprivate
+    , world!
+    >>> print mc.__dict__
+    {'_MyClass__superprivate': 'Hello', '_semiprivate': ', world!'}
