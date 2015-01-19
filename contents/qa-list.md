@@ -352,3 +352,18 @@ sum
 在一个动态类型语言比如haskell，元组通常有不同的类型，并且元组的长度必须是固定的。在列表中值必须是同一种类型，值长度不需要固定。所以区别很明显。
 
 最后，Python中还有一个[nametuple](https://docs.python.org/dev/library/collections.html#collections.namedtuple)，合理表示一个元组已经有的结构。这些突出的想法明确了元组是类和实例的一种轻型的替换。
+
+### Python 2.7里[...]是什么？
+
+问题[链接](http://stackoverflow.com/questions/17160162/what-is-in-python-2-7)
+
+它意味着你在它的内部创建了一个无限嵌套的不能打印的列表。`p`包含一个包含`p`的`p`...等等。`[...]`就是一种让你知道问题的标记，为了通告信息，它不能被而代表。看一下@6502的答案，那些展示了发生什么的优秀的图片。
+
+现在，关于之后你编辑的三个问题：
+
+* 这个[答案](http://stackoverflow.com/questions/7674685/whats-exactly-happening-in-infinite-nested-lists/7680125#7680125)看上去已经覆盖它了
+
+* Ignacio的[链接](http://www.csse.monash.edu.au/~lloyd/tildeFP/1993ACJ/)描述了一些可能的用法
+
+* 这更像是一种数据结构设计的话题而不是编程语言，所以很不幸，你不能在Python的官方文档找到任何参考
+
