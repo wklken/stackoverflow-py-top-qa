@@ -443,6 +443,7 @@ Java使用接口是因为它没有多重继承。
 ### Python中，新式类和旧式类的区别
 
 问题[链接](http://stackoverflow.com/questions/54867/what-is-the-difference-between-old-style-and-new-style-classes-in-python)
+
 根据[https://docs.python.org/2/reference/datamodel.html#new-style-and-classic-classes](https://docs.python.org/2/reference/datamodel.html#new-style-and-classic-classeshttps://docs.python.org/2/reference/datamodel.html#new-style-and-classic-classes):
 
     Up to Python 2.1, old-style classes were the only flavour available to the user. The concept of (old-style) class is unrelated to the concept of type: if x is an instance of an old-style class, then x.__class__ designates the class of x, but type(x) is always <type 'instance'>. This reflects the fact that all old-style instances, independently of their class, are implemented with a single built-in type, called instance.
@@ -454,3 +455,13 @@ Java使用接口是因为它没有多重继承。
     For compatibility reasons, classes are still old-style by default. New-style classes are created by specifying another new-style class (i.e. a type) as a parent class, or the "top-level type" object if no other parent is needed. The behaviour of new-style classes differs from that of old-style classes in a number of important details in addition to what type returns. Some of these changes are fundamental to the new object model, like the way special methods are invoked. Others are "fixes" that could not be implemented before for compatibility concerns, like the method resolution order in case of multiple inheritance.
 
     Python 3 only has new-style classes. No matter if you subclass from object or not, classes are new-style in Python 3. It is however recommended that you still subclass from object.
+
+### Python中，@property和设置-获取哪一个更好
+
+问题[链接](http://stackoverflow.com/questions/6618002/python-property-versus-getters-and-setters)
+
+用属性更好，这也是他们存在的原因。
+
+原因是在Python中，所有属性都是公共的。名字由单下划线或双下划线开始的，只不过是一个警告，表示这个属性的值在只是一个执行细节，在未来的版本中可能不会保持一致。他并没有阻止你去获取或者设置这个属性。因此，标准的属性访问途径便是是公认最好的，Pythonic的。
+
+属性的优点是他们和访问属性的语法上保持一致，所以你可以在不改变客户端的情况下把属性从一个改变成另一个值。你甚至可以有一个不再生产环境版本的类用来保存属性，不用改变代码就可以使用它们（用来debug或者上下文代码）。同时，你不需要为所有东西写获取和设置因为在之后你可能需要更好的控制。
