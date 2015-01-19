@@ -56,7 +56,6 @@ stackoverflow上Python相关回答整理翻译(相对来说都比较简单/散�
 
 ### 待翻译问题链接(还剩12个问题)
 
-http://stackoverflow.com/questions/17160162/what-is-[...]-in-python-2-7
 http://stackoverflow.com/questions/191673/preferred-python-unit-testing-framework
 http://stackoverflow.com/questions/61151/where-do-the-python-unit-tests-go
 http://stackoverflow.com/questions/1301346/the-meaning-of-a-single-and-a-double-underscore-before-an-object-name-in-python
@@ -236,6 +235,8 @@ qa-list.md:问题 (http://stackoverflow.com/questions/952914/making-a-flat-list-
 qa-list.md:问题 (http://stackoverflow.com/questions/1247486/python-list-comprehension-vs-map)
 
 qa-list.md:问题 (http://stackoverflow.com/questions/626759/whats-the-difference-between-list-and-tuples)
+
+qa-list.md:问题 (http://stackoverflow.com/questions/17160162/what-is-in-python-2-7)
 
 qa-math.md:问题 (http://stackoverflow.com/questions/1476/how-do-you-express-binary-literals-in-python)
 
