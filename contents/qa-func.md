@@ -80,7 +80,7 @@
     first, *rest = [1,2,3,4]
     first, *l, last = [1,2,3,4]
 
-### 在Python中使用**kwargs的合适方法
+### 在Python中使用\*\*kwargs的合适方法
 
 问题 [链接](http://stackoverflow.com/questions/1098549/proper-way-to-use-kwargs-in-python)
 
@@ -105,7 +105,7 @@ kwargs返回一个字典，但是这是不是设置默认值的最佳方式？�
 
     def __init__(self, val2="default value", **kwargs):
 
-### *args和**kwargs是什么
+### \*args和\*\*kwargs是什么
 问题[链接](http://stackoverflow.com/questions/3394835/args-and-kwargs)
 
 真正的语法是`*`和`**`，`*args`和`**kwargs`这两个名字只是约定俗成的，但并没有硬性的规定一定要使用它们。
@@ -182,7 +182,7 @@ kwargs返回一个字典，但是这是不是设置默认值的最佳方式？�
 
 [http://docs.python.org/reference/expressions.html#calls](http://docs.python.org/reference/expressions.html#calls)
 
-### Python参数中，\**和\*是干什么的
+### Python参数中，\*\*和\*是干什么的
 
 问题[链接](http://stackoverflow.com/questions/36901/what-does-double-star-and-star-do-for-python-parameters)
 
