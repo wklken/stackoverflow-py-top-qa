@@ -54,7 +54,7 @@ stackoverflow上Python相关回答整理翻译(相对来说都比较简单/散�
 
 * [其他](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-others.md)
 
-### 待翻译问题链接(还剩9个问题)
+### 待翻译问题链接(还剩8个问题)
 
 http://stackoverflow.com/questions/1549801/differences-between-isinstance-and-type-in-python
 http://stackoverflow.com/questions/323972/is-there-any-way-to-kill-a-thread-in-python
@@ -64,7 +64,6 @@ http://stackoverflow.com/questions/986006/how-do-i-pass-a-variable-by-reference
 http://stackoverflow.com/questions/1132941/least-astonishment-in-python-the-mutable-default-argument
 http://stackoverflow.com/questions/2970608/what-are-named-tuples-in-python
 http://stackoverflow.com/questions/1436703/difference-between-str-and-repr-in-python
-http://stackoverflow.com/questions/972/adding-a-method-to-an-existing-object
 
 
 ### 已翻译问题链接(去重)
@@ -305,6 +304,8 @@ qa-oop.md:问题 (http://stackoverflow.com/questions/6618002/python-property-ver
 qa-oop.md:问题 (http://stackoverflow.com/questions/904036/chain-calling-parent-constructors-in-python)
 
 qa-oop.md:问题 (http://stackoverflow.com/questions/1301346/the-meaning-of-a-single-and-a-double-underscore-before-an-object-name-in-python)
+
+qa-oop.md:问题 (http://stackoverflow.com/questions/972/adding-a-method-to-an-existing-object)
 
 qa-others.md:问题 (http://stackoverflow.com/questions/170921/should-i-learn-python-2-before-3-or-start-directly-from-python-3)
 

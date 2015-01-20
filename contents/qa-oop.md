@@ -512,3 +512,76 @@ Java使用接口是因为它没有多重继承。
     , world!
     >>> print mc.__dict__
     {'_MyClass__superprivate': 'Hello', '_semiprivate': ', world!'}
+
+### 在一个已存在的对象里，加一个方法
+
+问题[链接](http://stackoverflow.com/questions/972/adding-a-method-to-an-existing-object)
+
+在Python中，函数和约束方法还是有一些区别。
+
+    >> def foo():
+    ...     print "foo"
+    ...
+    >>> class A:
+    ...     def bar( self ):
+    ...         print "bar"
+    ...
+    >>> a = A()
+    >>> foo
+    <function foo at 0x00A98D70>
+    >>> a.bar
+    <bound method A.bar of <__main__.A instance at 0x00A9BC88>>
+    >>>
+
+约束方法被约束到一个实例上，当方法调用时这个实例会被当做第一个参数传入。
+
+在类（与实例相反）中，那些作为属性的可调用者仍然能是有限制的，尽管，你可以随时修改这个类的定义。
+
+    >>> def fooFighters( self ):
+    ...     print "fooFighters"
+    ...
+    >>> A.fooFighters = fooFighters
+    >>> a2 = A()
+    >>> a2.fooFighters
+    <bound method A.fooFighters of <__main__.A instance at 0x00A9BEB8>>
+    >>> a2.fooFighters()
+    fooFighters
+
+这样之前定义的实例也回随着更新（只要他们没有重写这个属性）：
+
+    >>> a.fooFighters()
+    fooFighters
+
+问题出现在当你想把一个方法固定在某一个实例时：
+
+    >>> def barFighters( self ):
+    ...     print "barFighters"
+    ...
+    >>> a.barFighters = barFighters
+    >>> a.barFighters()
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    TypeError: barFighters() takes exactly 1 argument (0 given)
+
+当你想直接固定到一个实例上时，函数不是自动约束的:
+
+    >>> a.barFighters
+    <function barFighters at 0x00A98EF0>
+
+为了绑定它，我盟可以用[types模块中的方法类函数](http://docs.python.org/library/types.html?highlight=methodtype#module-types):
+
+    >>> import types
+    >>> a.barFighters = types.MethodType( barFighters, a )
+    >>> a.barFighters
+    <bound method ?.barFighters of <__main__.A instance at 0x00A9BC88>>
+    >>> a.barFighters()
+    barFighters
+
+这时候，类的其他实例不会受到影响：
+
+    >>> a2.barFighters()
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    AttributeError: A instance has no attribute 'barFighters'
+
+更多的信息，可以在阅读[descriptors](http://users.rcn.com/python/download/Descriptor.htm)和[metaclass](http://www.onlamp.com/pub/a/python/2003/04/17/metaclasses.html)以及[programming](http://www.gnosis.cx/publish/programming/metaclass_2.html)中发现。
