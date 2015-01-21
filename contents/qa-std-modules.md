@@ -236,3 +236,28 @@ urllib2，提供了一些额外的函数，让你可以自定义request headers
 这会使Python控制台程序在当时停止，并给你展示堆栈的踪迹，允许你操作所有的变量。使用control-d(EOF)继续运行（在发出信号的一刻，通过注释你可以打断任何I/O等等，所以它不是完全无害的）。
 
 我还有一个可以做同样事情的脚本，唯一不同的是它可以和正在运行的进程通过pip互通（允许在后台进行程序排错等等）。粘贴到这可能太长了，我已经把它加进了[python cookbook recipe](http://code.activestate.com/recipes/576515/)。
+
+### Python中isinstance()和type()的区别
+
+总结一下其他人的答案（已OK的）作为内容。`isinstance`为继承者们服务（某个父类的实例也是基类的一个实例），而只检查是否相等的`type`则不是这样（他要求某个类型的id，拒绝子类型的实例，也可以叫做子类）
+
+在Python中，通常你希望你的代码支持继承，当然（自从继承变得很容易之后，通过使用你自己的而不是使用它本身来停止某些代码是很不好的），所以`isinstance`看上去比检查id的`type`s要好一些，因为它无缝支持继承。
+
+这不是说`isinstance`就绝对好，提醒一下，只是比对比类型是否相等好一点。通常从Pythonic的角度出发，最好的解决办法是永远的鸭子类型：试着像用一个渴望得到的类型去使用某个参数，用`try/except`声明捕获所有该参数不属于我们的渴望的类型而引起的异常（或者任何类鸭子类型；-），然后在`except`从句中，试着做一些其他的事情（假设这个参数“可能是”某些类型)
+
+`basestring`时一个奇葩，这是一个存在的意义仅仅是为了让你使用`isinstance`的内建类型（同理他们的子类`str`和`Unicode`）。字符串是有序的（你可以循环，排序，切片...），但是通常你对待它们就像标准类型--由于某些原因它不太好用（但是我们相当频繁的使用他们），原因是我们对于所有的字符串（或者其他标准类型，比如一个不能回环的东西）都用同一种方法，所有的容器（列表，集合，字典...），另一方面`basestring`加上`isinstance`可以帮你做这种事情--这个习惯用法的全部结构看起来像这样：
+
+    if isinstance(x, basestring)
+        return treatasscalar(x)
+    try:
+        return treatasiter(iter(x))
+    except TypeError:
+        return treatasscalar(x)
+
+你可能会说`basestring`是一个抽象类--在子类中没有提供具体的功能，更多的时候充当一个标记，为了让我们使用`isinstance`。从[PEP 3119](http://www.python.org/dev/peps/pep-3119/)开始，这种观念越来越明显，介绍了它的泛型，在Python2.6和3.0中被采用并实现。
+
+PEP明确了抽象基类可以代替鸭子类型，而且实现起来没什么压力（看[这里](https://www.python.org/dev/peps/pep-3119/#abcs-vs-duck-typing)）。最新版本的Python中实现的抽象基类提供了额外的更吸引人的东西：`isinstance`（和`issubclass`)现在不仅仅是一个子类的实例（特别是所有的类都可以注册成为抽象基类并展示为某个子类，它可以实例化抽象基类的实例），抽象基类还为具体的子类提供了更多的便利-自然的通过模板方法来设计模仿应用。（看[这里](http://en.wikipedia.org/wiki/Template_method_pattern)和[这里](http://www.catonmat.net/blog/learning-python-design-patterns-through-video-lectures/)（第三部分）了解Python中特殊不特殊的更多TM DP，以及抽象基类的支持）。
+
+对于那些Python 2.6中潜在的关于抽象基类的技巧，看[这里](https://docs.python.org/2/library/abc.html)，对于3.1版本，同样，看[这里](https://docs.python.org/3.1/library/abc.html)。两种版本的基本库模块[collections](https://docs.python.org/3.1/library/collections.html#module-collections)（这是3.1版本，几乎一样的2.6版本，看[这里](https://docs.python.org/2/library/collections.html#module-collections)）都提供了多种有用的抽象基类。
+
+这个答案的目的是，抽象基类保留的那些关键东西（我们可以超过论证横向比较TM DP的功能性，和Python传统的mixin类，比如[UserDict.DictMixin](https://docs.python.org/2/library/userdict.html#UserDict.DictMixin)）是他们让`isinstance`(和`issubclass`)比之前（Python2.5及之前）更有魅力且无处不在（在Python2.6以及更新的版本中）。因此，相比之下，在Python中检查类型相等更恶心了，比之前的版本还糟糕。

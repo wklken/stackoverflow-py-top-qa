@@ -54,9 +54,8 @@ stackoverflow上Python相关回答整理翻译(相对来说都比较简单/散�
 
 * [其他](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-others.md)
 
-### 待翻译问题链接(还剩8个问题)
+### 待翻译问题链接(还剩7个问题)
 
-http://stackoverflow.com/questions/1549801/differences-between-isinstance-and-type-in-python
 http://stackoverflow.com/questions/323972/is-there-any-way-to-kill-a-thread-in-python
 http://stackoverflow.com/questions/1485841/behaviour-of-increment-and-decrement-operators-in-python
 http://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python/6581949#6581949
@@ -368,6 +367,8 @@ qa-std-modules.md:问题 (http://stackoverflow.com/questions/2018026/should-i-us
 qa-std-modules.md:问题 (http://stackoverflow.com/questions/192109/is-there-a-function-in-python-to-print-all-the-current-properties-and-values-of)
 
 qa-std-modules.md:问题 (http://stackoverflow.com/questions/132058/showing-the-stack-trace-from-a-running-python-application)
+
+qa-std-modules.md:问题 (http://stackoverflow.com/questions/1549801/differences-between-isinstance-and-type-in-python)
 
 qa-string.md:问题 (http://stackoverflow.com/questions/493819/python-join-why-is-it-string-joinlist-instead-of-list-joinstring)
 
