@@ -585,3 +585,183 @@ Java使用接口是因为它没有多重继承。
     AttributeError: A instance has no attribute 'barFighters'
 
 更多的信息，可以在阅读[descriptors](http://users.rcn.com/python/download/Descriptor.htm)和[metaclass](http://www.onlamp.com/pub/a/python/2003/04/17/metaclasses.html)以及[programming](http://www.gnosis.cx/publish/programming/metaclass_2.html)中发现。
+
+### 在Python中，metaclass是什么
+
+问题[链接](http://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python/6581949#6581949)
+
+类对象
+
+在理解metaclass之前，你需要掌握Python中的类。而且Python的类的设计，非常的特别，借鉴了Smalltalk语言。
+
+大多数语言中，类只是一段代码用来描述如何生产一个对象。在Python中也有几分这个意思：
+
+    >>> class ObjectCreator(object):
+    ...       pass
+    ...
+
+    >>> my_object = ObjectCreator()
+    >>> print(my_object)
+    <__main__.ObjectCreator object at 0x8974f2c>
+
+但是Python中的类不仅仅如此。类，也是对象。
+
+对，对象。
+
+当你使用`class`这个关键字时，Python执行它并创造一个对象，示例：
+
+    >>> class ObjectCreator(object):
+    ...       pass
+    ...
+
+在内存中创建了一个对象名字是"ObjectCreator"。
+
+这个对象（类）有能力创造对象（实例），这也是为什么它是类。
+
+但它仍然是一个类，因此：
+
+ - 你可以把它当做一个变量
+
+ - 你可以复制它
+
+ - 你可以给它添加属性
+
+ - 你可以把它当成一个函数的参数
+
+举例：
+
+    >>> print(ObjectCreator) # you can print a class because it's an object
+    <class '__main__.ObjectCreator'>
+    >>> def echo(o):
+    ...       print(o)
+    ...
+    >>> echo(ObjectCreator) # you can pass a class as a parameter
+    <class '__main__.ObjectCreator'>
+    >>> print(hasattr(ObjectCreator, 'new_attribute'))
+    False
+    >>> ObjectCreator.new_attribute = 'foo' # you can add attributes to a class
+    >>> print(hasattr(ObjectCreator, 'new_attribute'))
+    True
+    >>> print(ObjectCreator.new_attribute)
+    foo
+    >>> ObjectCreatorMirror = ObjectCreator # you can assign a class to a variable
+    >>> print(ObjectCreatorMirror.new_attribute)
+    foo
+    >>> print(ObjectCreatorMirror())
+    <__main__.ObjectCreator object at 0x8997b4c>
+
+动态创建类
+
+类就是对象，你可以快速创建它，像任何其他对象一样。
+
+首先，你可以在一个函数里创建一个类，用`class`:
+
+    >>> def choose_class(name):
+    ...     if name == 'foo':
+    ...         class Foo(object):
+    ...             pass
+    ...         return Foo # return the class, not an instance
+    ...     else:
+    ...         class Bar(object):
+    ...             pass
+    ...         return Bar
+    ...
+    >>> MyClass = choose_class('foo')
+    >>> print(MyClass) # the function returns a class, not an instance
+    <class '__main__.Foo'>
+    >>> print(MyClass()) # you can create an object from this class
+    <__main__.Foo object at 0x89c6d4c>
+
+但是它不是很动态，你仍然需要手写你的类。
+
+既然类是对象，他们一定可以被什么东西生成。
+
+当你使用`class`关键字时，Python自动创建了这个对象，但是像Python中的其他东西一样，它给你了一个方法手动实现。
+
+还记得`type`函数吗。一个让你知道对象类型的古老的函数：
+
+    >>> print(type(1))
+    <type 'int'>
+    >>> print(type("1"))
+    <type 'str'>
+    >>> print(type(ObjectCreator))
+    <type 'type'>
+    >>> print(type(ObjectCreator()))
+    <class '__main__.ObjectCreator'>
+
+哦，`type`有另外一种完全不同的功能，它也可以迅速创建类。`type`可以把类的描述作为参数，并返回一个类。
+
+（我知道同一个函数根据你传入的值有两种不同的用法是很蠢的，但是它是Python中的一种向后兼容的问题）
+
+`type`这样工作：
+
+    type(name of the class,
+         tuple of the parent class (for inheritance, can be empty),
+         dictionary containing attributes names and values)
+
+举个例子
+
+    >>> class MyShinyClass(object):
+    ...       pass
+
+可以通过这种方法手动生成：
+
+    >>> MyShinyClass = type('MyShinyClass', (), {}) # returns a class object
+    >>> print(MyShinyClass)
+    <class '__main__.MyShinyClass'>
+    >>> print(MyShinyClass()) # create an instance with the class
+    <__main__.MyShinyClass object at 0x8997cec>
+
+你可能会注意到我们使用"MyShinyClass"做为类的名字并且作为变量并且作为类的参考。他们可以不同，但是没有必要把事情搞复杂。
+
+`type`接受一个字典，定义一个类的参数，所以：
+
+    >>> class Foo(object):
+    ...       bar = True
+
+可以理解成：
+
+    >>> Foo = type('Foo', (), {'bar':True})
+
+并且可以当成一个普通类来使用：
+
+    >>> print(Foo)
+    <class '__main__.Foo'>
+    >>> print(Foo.bar)
+    True
+    >>> f = Foo()
+    >>> print(f)
+    <__main__.Foo object at 0x8a9b84c>
+    >>> print(f.bar)
+    True
+
+当然，你可以继承它，所以：
+
+    >>>   class FooChild(Foo):
+    ...         pass
+
+可以是：
+
+    >>> FooChild = type('FooChild', (Foo,), {})
+    >>> print(FooChild)
+    <class '__main__.FooChild'>
+    >>> print(FooChild.bar) # bar is inherited from Foo
+    True
+
+最后你可能想要在你的类里添加方法。只要适当的定义一个函数，然后把它标记为属性。
+
+    >>> def echo_bar(self):
+    ...       print(self.bar)
+    ...
+    >>> FooChild = type('FooChild', (Foo,), {'echo_bar': echo_bar})
+    >>> hasattr(Foo, 'echo_bar')
+    False
+    >>> hasattr(FooChild, 'echo_bar')
+    True
+    >>> my_foo = FooChild()
+    >>> my_foo.echo_bar()
+    True
+
+可以回顾一下：在Python中，类就是对象，你可以动态的创造一个类。
+
+这就是当你使用`class`关键字时Python做的事情，使用metaclass时，也是一样的。
