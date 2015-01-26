@@ -54,9 +54,8 @@ stackoverflow上Python相关回答整理翻译(相对来说都比较简单/散�
 
 * [其他](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-others.md)
 
-### 待翻译问题链接(还剩6个问题)
+### 待翻译问题链接(还剩5个问题)
 
-http://stackoverflow.com/questions/1485841/behaviour-of-increment-and-decrement-operators-in-python
 http://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python/6581949#6581949
 http://stackoverflow.com/questions/986006/how-do-i-pass-a-variable-by-reference
 http://stackoverflow.com/questions/1132941/least-astonishment-in-python-the-mutable-default-argument
@@ -246,6 +245,8 @@ qa-math.md:问题 (http://stackoverflow.com/questions/455612/limiting-floats-to-
 qa-math.md:问题 (http://stackoverflow.com/questions/432842/how-do-you-get-the-logical-xor-of-two-variables-in-python)
 
 qa-math.md:问题 (http://stackoverflow.com/questions/2068372/fastest-way-to-list-all-primes-below-n-in-python)
+
+qa-math.md:问题 (http://stackoverflow.com/questions/1485841/behaviour-of-increment-and-decrement-operators-in-python)
 
 qa-modules.md:问题 (http://stackoverflow.com/questions/448271/what-is-init-py-for)
 
