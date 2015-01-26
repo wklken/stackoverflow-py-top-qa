@@ -236,3 +236,111 @@ urllib2，提供了一些额外的函数，让你可以自定义request headers
 这会使Python控制台程序在当时停止，并给你展示堆栈的踪迹，允许你操作所有的变量。使用control-d(EOF)继续运行（在发出信号的一刻，通过注释你可以打断任何I/O等等，所以它不是完全无害的）。
 
 我还有一个可以做同样事情的脚本，唯一不同的是它可以和正在运行的进程通过pip互通（允许在后台进行程序排错等等）。粘贴到这可能太长了，我已经把它加进了[python cookbook recipe](http://code.activestate.com/recipes/576515/)。
+
+### 在Python有什么办法杀死一个线程
+
+问题[链接](http://stackoverflow.com/questions/323972/is-there-any-way-to-kill-a-thread-in-python)
+
+不论是在Python中还是其他语言，突然停止一个线程通常来讲是一个很不好的习惯。考虑下面的情况：
+
+- 线程携带了非常重要的数据必须要正确的关闭
+
+- 线程创建了其余的进程，杀死这一个，其余的也要被杀掉
+
+如果你承担得起（比如你再操纵自己的线程），那么比较好的做法是创建一个exit_request标记，每一个线程都会定时的检查是不是轮到它退出了。
+
+举个例子：
+
+    import threading
+
+    class StoppableThread(threading.Thread):
+        """Thread class with a stop() method. The thread itself has to check
+        regularly for the stopped() condition."""
+
+        def __init__(self):
+            super(StoppableThread, self).__init__()
+            self._stop = threading.Event()
+
+        def stop(self):
+            self._stop.set()
+
+        def stopped(self):
+            return self._stop.isSet()
+
+上述代码，当你想要停止这个线程时，你可以调用stop()方法，然后等待线程退出，最好用join()。线程应该定时的检查stop这个标记。
+
+当然，某些情况下，你有足够的理由必须杀死一个线程。比如你正在封装一个外部的库，而且它已经持续很长时间了，你需要打断它。
+
+下面的代码允许（可能有些限制）在Python中触发一个异常。
+
+
+    def _async_raise(tid, exctype):
+        '''Raises an exception in the threads with id tid'''
+        if not inspect.isclass(exctype):
+            raise TypeError("Only types can be raised (not instances)")
+        res = ctypes.pythonapi.PyThreadState_SetAsyncExc(tid,
+                                                      ctypes.py_object(exctype))
+        if res == 0:
+            raise ValueError("invalid thread id")
+        elif res != 1:
+            # "if it returns a number greater than one, you're in trouble,
+            # and you should call it again with exc=NULL to revert the effect"
+            ctypes.pythonapi.PyThreadState_SetAsyncExc(tid, 0)
+            raise SystemError("PyThreadState_SetAsyncExc failed")
+    
+    class ThreadWithExc(threading.Thread):
+        '''A thread class that supports raising exception in the thread from
+           another thread.
+        '''
+        def _get_my_tid(self):
+            """determines this (self's) thread id
+    
+            CAREFUL : this function is executed in the context of the caller
+            thread, to get the identity of the thread represented by this
+            instance.
+            """
+            if not self.isAlive():
+                raise threading.ThreadError("the thread is not active")
+    
+            # do we have it cached?
+            if hasattr(self, "_thread_id"):
+                return self._thread_id
+    
+            # no, look for it in the _active dict
+            for tid, tobj in threading._active.items():
+                if tobj is self:
+                    self._thread_id = tid
+                    return tid
+    
+            # TODO: in python 2.6, there's a simpler way to do : self.ident
+    
+            raise AssertionError("could not determine the thread's id")
+    
+        def raiseExc(self, exctype):
+            """Raises the given exception type in the context of this thread.
+    
+            If the thread is busy in a system call (time.sleep(),
+            socket.accept(), ...), the exception is simply ignored.
+    
+            If you are sure that your exception should terminate the thread,
+            one way to ensure that it works is:
+    
+                t = ThreadWithExc( ... )
+                ...
+                t.raiseExc( SomeException )
+                while t.isAlive():
+                    time.sleep( 0.1 )
+                    t.raiseExc( SomeException )
+    
+            If the exception is to be caught by the thread, you need a way to
+            check that your thread has caught it.
+    
+            CAREFUL : this function is executed in the context of the
+            caller thread, to raise an excpetion in the context of the
+            thread represented by this instance.
+            """
+            _async_raise( self._get_my_tid(), exctype )
+        
+正如注释中所写，这并不是一个万能钥匙，如果一个线程在Python解释器之外跑着，那么它不会被抓住并打断。
+
+上面这段代码的一个好用法，就是让线程捕获一个特殊的异常并且表现的很干净。这样才能如你所愿的利落的中断一个任务。
