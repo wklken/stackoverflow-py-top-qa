@@ -237,7 +237,7 @@ urllib2，提供了一些额外的函数，让你可以自定义request headers
 
 我还有一个可以做同样事情的脚本，唯一不同的是它可以和正在运行的进程通过pip互通（允许在后台进行程序排错等等）。粘贴到这可能太长了，我已经把它加进了[python cookbook recipe](http://code.activestate.com/recipes/576515/)。
 
-### 在Python有什么办法杀死一个线程
+### 在Python中，有什么办法杀死一个线程
 
 问题[链接](http://stackoverflow.com/questions/323972/is-there-any-way-to-kill-a-thread-in-python)
 
