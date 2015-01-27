@@ -590,7 +590,7 @@ Java使用接口是因为它没有多重继承。
 
 问题[链接](http://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python/6581949#6581949)
 
-类对象
+**类对象**
 
 在理解metaclass之前，你需要掌握Python中的类。而且Python的类的设计，非常的特别，借鉴了Smalltalk语言。
 
@@ -765,3 +765,103 @@ Java使用接口是因为它没有多重继承。
 可以回顾一下：在Python中，类就是对象，你可以动态的创造一个类。
 
 这就是当你使用`class`关键字时Python做的事情，使用metaclass时，也是一样的。
+
+**什么是metaclass（最终版本）**
+
+Metaclass是创建类的原料。
+
+你定义类就是为了创建对象，对不对？
+
+但是我们知道Python类本身就是对象。
+
+所以，这些对象就是metaclass创建的。他们是类的类，你可以这样表述：
+
+    MyClass = MetaClass()
+    MyObject = MyClass()
+
+刚才你看到了`type`允许你做类似这样的事情：
+
+    MyClass = type('MyClass', (), {})
+
+这是因为`type`这个函数实际上是一个metaclass。`type`就是metaclass -- Python用来在后台创造一切类。
+
+现在你知道为什么这个东西他喵的写成小写的，而不是`Type`了吧。
+
+嗯，我想同样的问题可能发生在用来创造字符串对象的`str`这个类上，`int`是创造整数对象的类，`type`是用来创造类对象的类。
+
+通过查看`__class__`参数验证。
+
+所有的东西，我是说所有，在Python中都是对象。包括整数，字符串，函数，类。他们全是对象。他们全都由一个类创造而来：
+
+    >>> age = 35
+    >>> age.__class__
+    <type 'int'>
+    >>> name = 'bob'
+    >>> name.__class__
+    <type 'str'>
+    >>> def foo(): pass
+    >>> foo.__class__
+    <type 'function'>
+    >>> class Bar(object): pass
+    >>> b = Bar()
+    >>> b.__class__
+    <class '__main__.Bar'>
+
+现在，看看所有的`__class__`的`__class__`是什么？
+
+    >>> age.__class__.__class__
+    <type 'type'>
+    >>> name.__class__.__class__
+    <type 'type'>
+    >>> foo.__class__.__class__
+    <type 'type'>
+    >>> b.__class__.__class__
+    <type 'type'>
+
+所以，metaclass就是用来创造类对象的原料。
+
+如果你想，你可以把他叫做类工厂。
+
+`type`是Python使用的内建的metaclass，当然，你可以创造你自己的metaclass。
+
+**`__metaclass__`属性**
+
+你可以给你写的类添加一个`__metaclass__`属性:
+
+    class Foo(object):
+      __metaclass__ = something...
+      [...]
+
+如果你这样做，Python会使用metaclass创建`Foo`这个类。
+
+小心点，这很复杂。
+
+你先写了`class Foo(object)`，但是现在在内存中，还没有创建这个类对象`Foo`。
+
+Python会在类的定义时，检查`__metaclass__`。如果找到了，Python就用它创造一个类对象`Foo`。如果没有，就用`type`创造类。
+
+多读几次。
+
+当你这样：
+
+    class Foo(Bar):
+      pass
+
+Python会做下面这些事情：
+
+`Foo`里面有`__metaclass__`这个属性吗？
+
+如果有，在内存中创建一个类对象（我是说一个类对象，与我同在）通过使用`__metaclass__`创建一个同样的名字`Foo`。
+
+如果Python找不到`__metaclass__`，它会在模块层找这个`__metaclass__`，试图通过同样的方式。（但是仅对于那些没有继承任何东西的类，基本上都是旧式类）
+
+之后，如果哪都找不到`__metaclass__`，就使用`Bar`（第一层父类）自带的metaclass（有可能就是缺省的`type`）来创建类对象。
+
+注意，这里的`__metaclass__`不会被继承，父类的会被继承(`Bar.__class__`)。如果`Bar`使用一个用`type`（而不是`type.__new__()`）创建`Bar`本身的`__metaclass__`属性，那么子类不会继承这个行为。
+
+现在一个大问题出现了，你可以在`__metaclass__`里面放什么呢？
+
+答案是：一些可以创建类的东西。
+
+然而什么可以创建类的呢？`type`或者是它的任何子类，或者使用它的东西。
+
