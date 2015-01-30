@@ -865,4 +865,212 @@ Python会做下面这些事情：
 
 然而什么可以创建类的呢？`type`或者是它的任何子类，或者使用它的东西。
 
-**惯用的metaclass
+**惯用的metaclass **
+
+一个metaclass的主要目的就是当一个类创建的时候，自动的改变它。
+
+你通常对接口做这些事情，比如你想要创建一个符合当前上下文的类。
+
+试想一个愚蠢的例子，你决定让你的模块里的所有类的所有属性都用大写。有几种方法可以实现，其中一种是在模块层使用`__metaclass__`。
+
+通过这种方法，该模块的所有类在创建时都会使用这个metaclass，而我们只需要告诉metaclass把所有属性都变成大写。
+
+幸运的是，`__metaclass__`可以通过任何方式调用，不需要一个正规的类（我知道，有些名字里带着class的东西不一定是类，想想看吧，它很有用）。
+
+所以我们通过一个函数，从简单的例子开始：
+
+    # the metaclass will automatically get passed the same argument
+    # that you usually pass to `type`
+    def upper_attr(future_class_name, future_class_parents, future_class_attr):
+      """
+        Return a class object, with the list of its attribute turned
+        into uppercase.
+      """
+
+      # pick up any attribute that doesn't start with '__' and uppercase it
+      uppercase_attr = {}
+      for name, val in future_class_attr.items():
+          if not name.startswith('__'):
+              uppercase_attr[name.upper()] = val
+          else:
+              uppercase_attr[name] = val
+
+      # let `type` do the class creation
+      return type(future_class_name, future_class_parents, uppercase_attr)
+
+    __metaclass__ = upper_attr # this will affect all classes in the module
+
+    class Foo(): # global __metaclass__ won't work with "object" though
+      # but we can define __metaclass__ here instead to affect only this class
+      # and this will work with "object" children
+      bar = 'bip'
+
+    print(hasattr(Foo, 'bar'))
+    # Out: False
+    print(hasattr(Foo, 'BAR'))
+    # Out: True
+
+    f = Foo()
+    print(f.BAR)
+    # Out: 'bip'
+
+现在，我们做同样的事情，但是对metaclass使用真正的类：
+
+    # remember that `type` is actually a class like `str` and `int`
+    # so you can inherit from it
+    class UpperAttrMetaclass(type):
+        # __new__ is the method called before __init__
+        # it's the method that creates the object and returns it
+        # while __init__ just initializes the object passed as parameter
+        # you rarely use __new__, except when you want to control how the object
+        # is created.
+        # here the created object is the class, and we want to customize it
+        # so we override __new__
+        # you can do some stuff in __init__ too if you wish
+        # some advanced use involves overriding __call__ as well, but we won't
+        # see this
+        def __new__(upperattr_metaclass, future_class_name,
+                    future_class_parents, future_class_attr):
+
+            uppercase_attr = {}
+            for name, val in future_class_attr.items():
+                if not name.startswith('__'):
+                    uppercase_attr[name.upper()] = val
+                else:
+                    uppercase_attr[name] = val
+
+            return type(future_class_name, future_class_parents, uppercase_attr)
+
+但是这并不符合面向对象的思想。我们直接调用`type`，不重写或者调用父类的`__new__`方法。试一下：
+
+    class UpperAttrMetaclass(type):
+
+        def __new__(upperattr_metaclass, future_class_name,
+                    future_class_parents, future_class_attr):
+
+            uppercase_attr = {}
+            for name, val in future_class_attr.items():
+                if not name.startswith('__'):
+                    uppercase_attr[name.upper()] = val
+                else:
+                    uppercase_attr[name] = val
+
+            # reuse the type.__new__ method
+            # this is basic OOP, nothing magic in there
+            return type.__new__(upperattr_metaclass, future_class_name,
+                                future_class_parents, uppercase_attr)
+
+你可能会主要到多余的参数`upperattr_metaclass`。它没什么特殊的：一个方法总是接受当前的实例作为第一个参数。就像你在普通的方法中使用`self`。
+
+当然，我这里使用这么长的名字是为了更清楚，但是像`self`一样，所有参数有惯用的名字。所以一个真正的生产环境的metaclass看起来可能是这样：
+
+    class UpperAttrMetaclass(type):
+
+        def __new__(cls, clsname, bases, dct):
+
+            uppercase_attr = {}
+            for name, val in dct.items():
+                if not name.startswith('__'):
+                    uppercase_attr[name.upper()] = val
+                else:
+                    uppercase_attr[name] = val
+
+            return type.__new__(cls, clsname, bases, uppercase_attr)
+
+我们可以通过使用`super`简化继承，让它更清晰。（因此，你可以拥有metaclasses，继承metaclass，继承type）
+
+    class UpperAttrMetaclass(type):
+
+        def __new__(cls, clsname, bases, dct):
+
+            uppercase_attr = {}
+            for name, val in dct.items():
+                if not name.startswith('__'):
+                    uppercase_attr[name.upper()] = val
+                else:
+                    uppercase_attr[name] = val
+
+            return super(UpperAttrMetaclass, cls).__new__(cls, clsname, bases, uppercase_attr)
+
+差不多就这样，metaclass真没什么更多的内容了。
+
+使用metaclass的代码非常复杂的背后原因不是metaclass本身，而是你把metaclass用在了那些自我实现，多重继承的东西上，比如`__dict__`等等。
+
+总之，metaclass有特殊的技巧实现黑魔法，当然包括复杂的东西。但是对他们自己来说，他们很简单：
+
+ - 拦截一个类的创建
+
+ - 装饰一个类
+
+ - 返回装饰过的类
+
+**为什么使用metaclass替代函数**
+
+既然`__metaclass__`可以接受任何调用，为什么你还要使用明显更复杂的类呢？
+
+有几个原因：
+
+ - 目的更明确。当你看到`UpperAttrMetaclass(type)`的时候就，你知道接下去会发生什么
+
+ - 你可以使用面向对象，metaclass可以继承metaclass，重写父类的方法，Metaclass也可以使用metaclass。
+
+ - 你可以更好的组织你的代码结构。不要像上面的例子哪样琐碎的使用metaclass。对某些东西来说它通常是复杂的。创造几个方法并把它们整合到一个类里是很有用的，可以让代码更易读。
+
+ - 关联使用`__new__`，`__init__`，和`__call__`。它们允许你做不同的东西，尽管你可以把它们都做在`__new__`里面，有些人用`__init__`更舒服。
+
+ - 这些都叫metaclass，靠，它们肯定很有意义。
+
+**你他喵为什么会使用metaclass**
+
+现在有一个大问题，为什么使用这种倾向于引起不清晰的错误的特性？
+
+通常你不会这样：
+
+    Metaclass的99%的使用者都不必担心它的深度魔法。如果你不知道你是否需要它们，就别用（那些需要它们的人知道为何用它们，而且不需要解释）
+
+*Python Guru Tim Peters*
+
+metaclass的主要作用就是创造一个接口。典型的用法就是Django ORM。
+
+它允许你这样定义这些东西：
+
+    class Person(models.Model):
+        name = models.CharField(max_length=30)
+        age = models.IntegerField()
+
+但是你这样用：
+
+    guy = Person(name='bob', age='35')
+    print(guy.age)
+
+它不会返回一个`IntegerField`对象。它会返回一个`int`，甚至能直接从数据库里拿。
+
+这可能是由于`models.Model`为它定义了`__metaclass__`，使用一些魔法方法，让你可以定义一些可以做复杂的事情的简单声明关联数据库。
+
+Django让一些复杂的事情看起来很简单，通过暴露一个简单的接口，使用metaclass，重构了接口的代码让真正的行为在幕后执行。
+
+**结语**
+
+首先你知道类是对象而且可以创建实例。
+
+实际上，类本身也是实例，是metaclass的实例。
+
+    >>> class Foo(object): pass
+    >>> id(Foo)
+    142630324
+
+所有的东西都是对象，在Python中，它们不是一个类的实例，就是metaclass的实例。
+
+除了`type`。
+
+`type`是它自己的metaclass。这些东西在纯净的Python环境下是看不到的，他们在执行层做了一些交互来实现。
+
+第二，metaclass是复杂的。你不需要在每一个简单的类里使用它。你可以用两种不同的方法来改变一个类：
+
+ - [monkey patching](http://en.wikipedia.org/wiki/Monkey_patch)
+
+ - 类的装饰器
+
+99%的当你需要改变一个类的时刻，你需要用这些东西。
+
+但是99%的时间里，你不根本不需要改变一个类。
