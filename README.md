@@ -54,10 +54,9 @@ stackoverflow上Python相关回答整理翻译(相对来说都比较简单/散�
 
 * [其他](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-others.md)
 
-### 待翻译问题链接(还剩4个问题)
+### 待翻译问题链接(还剩3个问题)
 
 http://stackoverflow.com/questions/986006/how-do-i-pass-a-variable-by-reference
-http://stackoverflow.com/questions/1132941/least-astonishment-in-python-the-mutable-default-argument
 http://stackoverflow.com/questions/2970608/what-are-named-tuples-in-python
 http://stackoverflow.com/questions/1436703/difference-between-str-and-repr-in-python
 
@@ -306,6 +305,8 @@ qa-oop.md:问题 (http://stackoverflow.com/questions/1301346/the-meaning-of-a-si
 qa-oop.md:问题 (http://stackoverflow.com/questions/972/adding-a-method-to-an-existing-object)
 
 qa-oop.md:问题 (http://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python/6581949#6581949)
+
+qa-oop.md:问题 (http://stackoverflow.com/questions/1132941/least-astonishment-in-python-the-mutable-default-argument)
 
 qa-others.md:问题 (http://stackoverflow.com/questions/170921/should-i-learn-python-2-before-3-or-start-directly-from-python-3)
 

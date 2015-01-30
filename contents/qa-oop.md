@@ -1074,3 +1074,17 @@ Django让一些复杂的事情看起来很简单，通过暴露一个简单的�
 99%的当你需要改变一个类的时刻，你需要用这些东西。
 
 但是99%的时间里，你不根本不需要改变一个类。
+
+### Python的"最小惊奇"：多重默认参数
+
+问题[链接](http://stackoverflow.com/questions/1132941/least-astonishment-in-python-the-mutable-default-argument)
+
+实际上，这不是一个设计瑕疵，而且不它不是因为内部或者表现问题。
+
+它单纯是来自Python中，函数是第一梯队的对象的事实，而且不仅仅是一段代码。
+
+从这个角度，你会发现它很明智：一个函数是一个对象取决于它的定义；默认参数是一种类似丛书数据，而且它们的状态可能从一次到另一次的调用过程中发生改变-和在其他对象中一样。
+
+不管怎样，Effbot在[Default Parameter Values in Python](http://effbot.org/zone/default-values.htm)中对这种表现有一个很好的解释。
+
+我发现它很干净，我强烈推荐阅读以下，并且对函数对象是如何工作的掌握更多知识。
