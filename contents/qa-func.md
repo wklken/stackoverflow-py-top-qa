@@ -241,6 +241,8 @@ kwargs返回一个字典，但是这是不是设置默认值的最佳方式？�
 
 ### 为什么在Python的函数中，代码运行速度更快
 
+问题[链接](http://stackoverflow.com/questions/11241523/why-does-python-code-run-faster-in-a-function)
+
 你可能要问为什么在存储在本地变量的比全局变量运行速度更快。这是一个CPython执行细节。
 
 记住Cpython在解释器运行时，是编译成字节编码的。当一个函数编译完成，本地变量就全部被存储在一个固定长度的数组中了（而不是字典）而且名字被指定了索引。这是合理的，因为你不能自动添加本地变量到你的函数中去。在指针中循环检索一个本地变量加入到列表中，并且计算琐碎的`PyObject`的增加。
@@ -248,3 +250,122 @@ kwargs返回一个字典，但是这是不是设置默认值的最佳方式？�
 不同的是全局查找（`LOAD_GLOBAL`），是一个涉及哈希查找的字典等等。顺带的，这就是为什么当你需要一个全局变量时，要说明`global i`。如果你曾经在一个范围内给一个变量赋值了，那么编译器会为它的入口发布一些`STORE_FAST`。除非你告诉它不要这样做。
 
 顺便说一句，全局查找仍然是非常棒的。属性查找`foo.bar`是非常慢的。
+
+### 如果把一个变量作为引用传入
+
+问题[链接](http://stackoverflow.com/questions/986006/how-do-i-pass-a-variable-by-reference)
+
+问题出在[pass by assignment](https://docs.python.org/3/faq/programming.html#how-do-i-write-a-function-with-output-parameters-call-by-reference)。它背后的原理可以分为两部分：
+
+    1、 传入的参数实际上是一个对象的引用（但是引用的是值）
+
+    2、 有些数据类型是可变的的，有些不是
+
+所以
+
+ - 如果你向方法中传递了一个可变的对象，那么方法得到了这些对象的一个引用，只要你开心，就可以随意改变它。但是如果你在方法中重新定义了引用，外部是不知道的，所以当你改变了它，其他的引用仍然指向根对象。
+
+ - 如果你向方法中传递了一个不可变对象，那么你不会重新定义外部的引用，你甚至不能改变对象。
+
+我们做一些示例，让它们更清晰。
+
+**列表-一种可变类型**
+
+我们试着去修改传入方法中的列表：
+
+    def try_to_change_list_contents(the_list):
+        print 'got', the_list
+        the_list.append('four')
+        print 'changed to', the_list
+
+    outer_list = ['one', 'two', 'three']
+
+    print 'before, outer_list =', outer_list
+    try_to_change_list_contents(outer_list)
+    print 'after, outer_list =', outer_list
+
+输出：
+
+    before, outer_list = ['one', 'two', 'three']
+    got ['one', 'two', 'three']
+    changed to ['one', 'two', 'three', 'four']
+    after, outer_list = ['one', 'two', 'three', 'four']
+
+一个参数传入的是`outer_list`的一个引用，而不是它的复制，我们可以使用改变列表的方法去改变它，并且把改变反馈给其他的范围。
+
+现在让我们看一下当我们试着改变这个作为参数传入的引用：
+
+    def try_to_change_list_reference(the_list):
+        print 'got', the_list
+        the_list = ['and', 'we', 'can', 'not', 'lie']
+        print 'set to', the_list
+
+    outer_list = ['we', 'like', 'proper', 'English']
+
+    print 'before, outer_list =', outer_list
+    try_to_change_list_reference(outer_list)
+    print 'after, outer_list =', outer_list
+
+输出：
+
+    before, outer_list = ['we', 'like', 'proper', 'English']
+    got ['we', 'like', 'proper', 'English']
+    set to ['and', 'we', 'can', 'not', 'lie']
+    after, outer_list = ['we', 'like', 'proper', 'English']
+
+`the_list`参数传递的是值，重新定义一个新的列表，对于方法外部的代码，没有任何影响。`the_list`只是`outer_list`的一个引用，我们让`the_list`指向了一个新的列表，但是我们没有办法修改`outer_list`的指向。
+
+**字符串-不可变类型**
+
+它是不可变的，所以我们没有办法改变字符串的内容。
+
+我们试着改变一下引用。
+
+    def try_to_change_string_reference(the_string):
+        print 'got', the_string
+        the_string = 'In a kingdom by the sea'
+        print 'set to', the_string
+
+    outer_string = 'It was many and many a year ago'
+
+    print 'before, outer_string =', outer_string
+    try_to_change_string_reference(outer_string)
+    print 'after, outer_string =', outer_string
+
+输出：
+
+    before, outer_string = It was many and many a year ago
+    got It was many and many a year ago
+    set to In a kingdom by the sea
+    after, outer_string = It was many and many a year ago
+
+再一次，`the_string`参数通过值传递，定义一个新的字符串对于外部的代码是不起作用的。`the_string`是`outer_string`的一个引用的复制，我们把`the_string`指向了一个新的字符串。但是我们并没有改变`outer_string`的指向。
+
+我希望这样说可以让事情看上去简单一些了。
+
+编辑：被标记了，这并没有回答@David主要想问的问题。“有没有什么办法让我传入的值是真实的引用？“。回答一下。
+
+**我们怎么避免这些？**
+
+像@Andrea的我回答所展示的，你可以返回一个新的值。这不会改变传入的值，但是确实可以让你得到你想要输出的信息：
+
+    def return_a_whole_new_string(the_string):
+        new_string = something_to_do_with_the_old_string(the_string)
+        return new_string
+
+    # then you could call it like
+    my_string = return_a_whole_new_string(my_string)
+
+如果你确实想避免使用一个返回的值，你可以创建一个类承载你的值，并把他传入一个函数或者用一个已知的类，像列表一样：
+
+    def use_a_wrapper_to_simulate_pass_by_reference(stuff_to_change):
+        new_string = something_to_do_with_the_old_string(stuff_to_change[0])
+        stuff_to_change[0] = new_string
+
+    # then you could call it like
+    wrapper = [my_string]
+    use_a_wrapper_to_simulate_pass_by_reference(wrapper)
+
+    do_something_with(wrapper[0])
+
+虽然这样看起来有些笨重。

@@ -54,9 +54,8 @@ stackoverflow上Python相关回答整理翻译(相对来说都比较简单/散�
 
 * [其他](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-others.md)
 
-### 待翻译问题链接(还剩3个问题)
+### 待翻译问题链接(还剩2问题)
 
-http://stackoverflow.com/questions/986006/how-do-i-pass-a-variable-by-reference
 http://stackoverflow.com/questions/2970608/what-are-named-tuples-in-python
 http://stackoverflow.com/questions/1436703/difference-between-str-and-repr-in-python
 
@@ -193,6 +192,8 @@ qa-func.md:问题 (http://stackoverflow.com/questions/682504/what-is-a-clean-pyt
 qa-func.md:问题 (http://stackoverflow.com/questions/36901/what-does-double-star-and-star-do-for-python-parameters)
 
 qa-func.md:问题 (http://stackoverflow.com/questions/11241523/why-does-python-code-run-faster-in-a-function)
+
+qa-func.md:问题 (http://stackoverflow.com/questions/986006/how-do-i-pass-a-variable-by-reference)
 
 qa-list.md:问题 (http://stackoverflow.com/questions/509211/the-python-slice-notation)
 
