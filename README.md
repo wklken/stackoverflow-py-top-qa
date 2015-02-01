@@ -50,13 +50,11 @@ stackoverflow上Python相关回答整理翻译(相对来说都比较简单/散�
 
 > 其他
 
-* [pip/easy_install](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-pip-easy_install.md)
+* [pip/easy_install](https://github.com/wklken/stackoverflow-py-top-qa/blob1master/contents/qa-pip-easy_install.md)
 
 * [其他](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-others.md)
 
-### 待翻译问题链接(还剩1问题)
-
-http://stackoverflow.com/questions/1436703/difference-between-str-and-repr-in-python
+### 待翻译问题链接(还剩0问题)
 
 
 ### 已翻译问题链接(去重)
@@ -79,6 +77,8 @@ qa-built-in.md:问题 (http://stackoverflow.com/questions/56011/single-quotes-vs
 qa-built-in.md:问题 (http://stackoverflow.com/questions/13857/can-you-explain-closures-as-they-relate-to-python)
 
 qa-built-in.md:问题 (http://stackoverflow.com/questions/890128/python-lambda-why)
+
+qa-built-in.md:问题 (http://stackoverflow.com/questions/1436703/difference-between-str-and-repr-in-python)
 
 qa-control-flow.md:问题 (http://stackoverflow.com/questions/73663/terminating-a-python-script)
 
