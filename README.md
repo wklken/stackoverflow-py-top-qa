@@ -50,7 +50,7 @@ stackoverflow上Python相关回答整理翻译(相对来说都比较简单/散�
 
 > 其他
 
-* [pip/easy_install](https://github.com/wklken/stackoverflow-py-top-qa/blob1master/contents/qa-pip-easy_install.md)
+* [pip/easy_install](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-pip-easy_install.md)
 
 * [其他](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-others.md)
 
