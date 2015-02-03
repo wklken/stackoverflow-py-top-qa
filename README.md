@@ -54,47 +54,9 @@ stackoverflow上Python相关回答整理翻译(相对来说都比较简单/散�
 
 * [其他](https://github.com/wklken/stackoverflow-py-top-qa/blob/master/contents/qa-others.md)
 
-### 待翻译问题链接(还剩35个问题)
+### 待翻译问题链接(还剩0问题)
 
-http://stackoverflow.com/questions/36932/how-can-i-represent-an-enum-in-python
-http://stackoverflow.com/questions/682504/what-is-a-clean-pythonic-way-to-have-multiple-constructors-in-python
-http://stackoverflow.com/questions/509211/pythons-slice-notation
-http://stackoverflow.com/questions/15376509/when-is-i-x-different-from-i-i-x-in-python
-http://stackoverflow.com/questions/132058/showing-the-stack-trace-from-a-running-python-application
-http://stackoverflow.com/questions/419163/what-does-if-name-main-do
-http://stackoverflow.com/questions/279237/import-a-module-from-a-relative-path
-http://stackoverflow.com/questions/4324558/whats-the-proper-way-to-install-pip-virtualenv-and-distribute-for-python
-http://stackoverflow.com/questions/306313/python-is-operator-behaves-unexpectedly-with-integers
-http://stackoverflow.com/questions/455612/limiting-floats-to-two-decimal-points
-http://stackoverflow.com/questions/54867/old-style-and-new-style-classes-in-python
-http://stackoverflow.com/questions/432842/how-do-you-get-the-logical-xor-of-two-variables-in-python
-http://stackoverflow.com/questions/626759/whats-the-difference-between-list-and-tuples
-http://stackoverflow.com/questions/682367/good-python-modules-for-fuzzy-string-comparison
-http://stackoverflow.com/questions/72852/how-to-do-relative-imports-in-python
-http://stackoverflow.com/questions/36901/what-does-double-star-and-star-do-for-python-parameters
-http://stackoverflow.com/questions/5082452/python-string-formatting-vs-format
-http://stackoverflow.com/questions/261638/how-do-i-protect-python-code
-http://stackoverflow.com/questions/944592/best-practice-for-python-assert
-http://stackoverflow.com/questions/11241523/why-does-python-code-run-faster-in-a-function
-http://stackoverflow.com/questions/2068372/fastest-way-to-list-all-primes-below-n-in-python
-http://stackoverflow.com/questions/42950/get-last-day-of-the-month-in-python
-http://stackoverflow.com/questions/6618002/python-property-versus-getters-and-setters
-http://stackoverflow.com/questions/904036/chain-calling-parent-constructors-in-python
-http://stackoverflow.com/questions/17160162/what-is-in-python-2-7
-http://stackoverflow.com/questions/191673/preferred-python-unit-testing-framework
-http://stackoverflow.com/questions/61151/where-do-the-python-unit-tests-go
-http://stackoverflow.com/questions/1301346/the-meaning-of-a-single-and-a-double-underscore-before-an-object-name-in-python
-http://stackoverflow.com/questions/6344076/differences-between-distribute-distutils-setuptools-and-distutils2
-http://stackoverflow.com/questions/1549801/differences-between-isinstance-and-type-in-python
-http://stackoverflow.com/questions/323972/is-there-any-way-to-kill-a-thread-in-python
-http://stackoverflow.com/questions/1485841/behaviour-of-increment-and-decrement-operators-in-python
-http://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python/6581949#6581949
-http://stackoverflow.com/questions/986006/how-do-i-pass-a-variable-by-reference
-http://stackoverflow.com/questions/1132941/least-astonishment-in-python-the-mutable-default-argument
-http://stackoverflow.com/questions/2970608/what-are-named-tuples-in-python
-http://stackoverflow.com/questions/1436703/difference-between-str-and-repr-in-python
-http://stackoverflow.com/questions/972/adding-a-method-to-an-existing-object
-
+qa-tuple.md:问题 (http://stackoverflow.com/questions/2970608/what-are-named-tuples-in-python)
 
 ### 已翻译问题链接(去重)
 
@@ -116,6 +78,8 @@ qa-built-in.md:问题 (http://stackoverflow.com/questions/56011/single-quotes-vs
 qa-built-in.md:问题 (http://stackoverflow.com/questions/13857/can-you-explain-closures-as-they-relate-to-python)
 
 qa-built-in.md:问题 (http://stackoverflow.com/questions/890128/python-lambda-why)
+
+qa-built-in.md:问题 (http://stackoverflow.com/questions/1436703/difference-between-str-and-repr-in-python)
 
 qa-control-flow.md:问题 (http://stackoverflow.com/questions/73663/terminating-a-python-script)
 
@@ -140,6 +104,8 @@ qa-control-flow.md:问题 (http://stackoverflow.com/questions/394809/does-python
 qa-control-flow.md:问题 (http://stackoverflow.com/questions/743164/do-while-loop-in-python)
 
 qa-control-flow.md:问题 (http://stackoverflow.com/questions/135041/should-you-always-favor-xrange-over-range) 
+
+qa-control-flow.md:问题 (http://stackoverflow.com/questions/15376509/when-is-i-x-different-from-i-i-x-in-python)
 
 qa-datetime.md:问题 (http://stackoverflow.com/questions/1697815/how-do-you-convert-a-python-time-struct-time-object-into-a-datetime-object)
 
@@ -178,6 +144,8 @@ qa-exception.md:问题 (http://stackoverflow.com/questions/6470428/catch-multipl
 qa-exception.md:问题 (http://stackoverflow.com/questions/944592/best-practice-for-python-assert)
 
 qa-exception.md:问题 (http://stackoverflow.com/questions/5574702/how-to-print-to-stderr-in-python)
+
+qa-exception.md:问题 (http://stackoverflow.com/questions/944592/best-practice-for-python-assert)
 
 qa-file.md:问题 (http://stackoverflow.com/questions/82831/how-do-i-check-if-a-file-exists-using-python)
 
@@ -219,6 +187,14 @@ qa-func.md:问题 (http://stackoverflow.com/questions/1098549/proper-way-to-use-
 
 qa-func.md:问题 (http://stackoverflow.com/questions/3394835/args-and-kwargs)
 
+qa-func.md:问题 (http://stackoverflow.com/questions/682504/what-is-a-clean-pythonic-way-to-have-multiple-constructors-in-python)
+
+qa-func.md:问题 (http://stackoverflow.com/questions/36901/what-does-double-star-and-star-do-for-python-parameters)
+
+qa-func.md:问题 (http://stackoverflow.com/questions/11241523/why-does-python-code-run-faster-in-a-function)
+
+qa-func.md:问题 (http://stackoverflow.com/questions/986006/how-do-i-pass-a-variable-by-reference)
+
 qa-list.md:问题 (http://stackoverflow.com/questions/509211/the-python-slice-notation)
 
 qa-list.md:问题 (http://stackoverflow.com/questions/53513/python-what-is-the-best-way-to-check-if-a-list-is-empty)
@@ -249,6 +225,10 @@ qa-list.md:问题 (http://stackoverflow.com/questions/952914/making-a-flat-list-
 
 qa-list.md:问题 (http://stackoverflow.com/questions/1247486/python-list-comprehension-vs-map)
 
+qa-list.md:问题 (http://stackoverflow.com/questions/626759/whats-the-difference-between-list-and-tuples)
+
+qa-list.md:问题 (http://stackoverflow.com/questions/17160162/what-is-in-python-2-7)
+
 qa-math.md:问题 (http://stackoverflow.com/questions/1476/how-do-you-express-binary-literals-in-python)
 
 qa-math.md:问题 (http://stackoverflow.com/questions/209513/convert-hex-string-to-int-in-python)
@@ -256,6 +236,16 @@ qa-math.md:问题 (http://stackoverflow.com/questions/209513/convert-hex-string-
 qa-math.md:问题 (http://stackoverflow.com/questions/1267869/how-can-i-force-division-to-be-floating-point-in-python)
 
 qa-math.md:问题 (http://stackoverflow.com/questions/961632/converting-integer-to-string-in-python)
+
+qa-math.md:问题 (http://stackoverflow.com/questions/306313/python-is-operator-behaves-unexpectedly-with-integers)
+
+qa-math.md:问题 (http://stackoverflow.com/questions/455612/limiting-floats-to-two-decimal-points)
+
+qa-math.md:问题 (http://stackoverflow.com/questions/432842/how-do-you-get-the-logical-xor-of-two-variables-in-python)
+
+qa-math.md:问题 (http://stackoverflow.com/questions/2068372/fastest-way-to-list-all-primes-below-n-in-python)
+
+qa-math.md:问题 (http://stackoverflow.com/questions/1485841/behaviour-of-increment-and-decrement-operators-in-python)
 
 qa-modules.md:问题 (http://stackoverflow.com/questions/448271/what-is-init-py-for)
 
@@ -266,6 +256,14 @@ qa-modules.md:问题 (http://stackoverflow.com/questions/247770/retrieving-pytho
 qa-modules.md:问题 (http://stackoverflow.com/questions/44834/can-someone-explain-all-in-python)
 
 qa-modules.md:问题 (http://stackoverflow.com/questions/437589/how-do-i-unload-reload-a-python-module)
+
+qa-modules.md:问题 (http://stackoverflow.com/questions/36932/how-can-i-represent-an-enum-in-python)
+
+qa-modules.md:问题 (http://stackoverflow.com/questions/419163/what-does-if-name-main-do)
+
+qa-modules.md:问题 (http://stackoverflow.com/questions/279237/import-a-module-from-a-relative-path)
+
+qa-modules.md:问题 (http://stackoverflow.com/questions/72852/how-to-do-relative-imports-in-python)
 
 qa-oop.md:问题 (http://stackoverflow.com/questions/2709821/python-self-explained)
 
@@ -297,6 +295,20 @@ qa-oop.md:问题 (http://stackoverflow.com/questions/372042/difference-between-a
 
 qa-oop.md:问题 (http://stackoverflow.com/questions/472000/python-slots)
 
+qa-oop.md:问题 (http://stackoverflow.com/questions/54867/old-style-and-new-style-classes-in-python)
+
+qa-oop.md:问题 (http://stackoverflow.com/questions/6618002/python-property-versus-getters-and-setters)
+
+qa-oop.md:问题 (http://stackoverflow.com/questions/904036/chain-calling-parent-constructors-in-python)
+
+qa-oop.md:问题 (http://stackoverflow.com/questions/1301346/the-meaning-of-a-single-and-a-double-underscore-before-an-object-name-in-python)
+
+qa-oop.md:问题 (http://stackoverflow.com/questions/972/adding-a-method-to-an-existing-object)
+
+qa-oop.md:问题 (http://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python/6581949#6581949)
+
+qa-oop.md:问题 (http://stackoverflow.com/questions/1132941/least-astonishment-in-python-the-mutable-default-argument)
+
 qa-others.md:问题 (http://stackoverflow.com/questions/170921/should-i-learn-python-2-before-3-or-start-directly-from-python-3)
 
 qa-others.md:问题 (http://stackoverflow.com/questions/1534210/use-different-python-version-with-virtualenv)
@@ -319,6 +331,14 @@ qa-others.md:问题 (http://stackoverflow.com/questions/89228/calling-an-externa
 
 qa-others.md:问题 (http://stackoverflow.com/questions/287871/print-in-terminal-with-colors-using-python)
 
+qa-others.md:问题 (http://stackoverflow.com/questions/261638/how-do-i-protect-python-code)
+
+qa-others.md:问题 (http://stackoverflow.com/questions/191673/preferred-python-unit-testing-framework)
+
+qa-others.md:问题 (http://stackoverflow.com/questions/61151/where-do-the-python-unit-tests-go)
+
+qa-others.md:问题 (http://stackoverflow.com/questions/6344076/differences-between-distribute-distutils-setuptools-and-distutils2)
+
 qa-pip-easy_install.md:问题 (http://stackoverflow.com/questions/2720014/upgrading-all-packages-with-pip)
 
 qa-pip-easy_install.md:问题 (http://stackoverflow.com/questions/1231688/how-do-i-remove-packages-installed-with-pythons-easy-install)
@@ -330,6 +350,8 @@ qa-pip-easy_install.md:问题 (http://stackoverflow.com/questions/1550226/python
 qa-pip-easy_install.md:问题 (http://stackoverflow.com/questions/739993/get-a-list-of-installed-python-modules)
 
 qa-pip-easy_install.md:问题 (http://stackoverflow.com/questions/3220404/why-use-pip-over-easy-install)
+
+qa-pip-easy_install.md:问题 (http://stackoverflow.com/questions/4324558/whats-the-proper-way-to-install-pip-virtualenv-and-distribute-for-python)
 
 qa-std-modules.md:问题 (http://stackoverflow.com/questions/712791/json-and-simplejson-module-differences-in-python)
 
@@ -346,6 +368,12 @@ qa-std-modules.md:问题 (http://stackoverflow.com/questions/534839/how-to-creat
 qa-std-modules.md:问题 (http://stackoverflow.com/questions/2018026/should-i-use-urllib-or-urllib2-or-requests)
 
 qa-std-modules.md:问题 (http://stackoverflow.com/questions/192109/is-there-a-function-in-python-to-print-all-the-current-properties-and-values-of)
+
+qa-std-modules.md:问题 (http://stackoverflow.com/questions/132058/showing-the-stack-trace-from-a-running-python-application)
+
+qa-std-modules.md:问题 (http://stackoverflow.com/questions/1549801/differences-between-isinstance-and-type-in-python)
+
+qa-std-modules.md:问题 (http://stackoverflow.com/questions/323972/is-there-any-way-to-kill-a-thread-in-python)
 
 qa-string.md:问题 (http://stackoverflow.com/questions/493819/python-join-why-is-it-string-joinlist-instead-of-list-joinstring)
 
@@ -389,6 +417,8 @@ more [link](https://github.com/wklken/stackoverflow-py-top-qa/graphs/contributor
 ### Donation
 
 You can Buy me a coffee:)  [link](http://www.wklken.me/pages/donation.html)
+
+
 
 ------
 

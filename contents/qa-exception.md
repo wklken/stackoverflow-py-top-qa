@@ -93,7 +93,7 @@ pythonic
 
     原文 Also, is there any way to set a business rule like if x \< 0 raise error that is always checked without the try/except/finally so, if at anytime throughout the code x is less than 0 an error is raised, like if you set assert x < 0 at the start of a function, anywhere within the function where x becomes less then 0 an exception is raised?
 
-回答
+回答1
 
 Assert仅用在，测试那些从不发生的情况！目的是让程序尽早失败
 
@@ -105,6 +105,38 @@ Exception用在，那些可以明确知道会发生的错误，并且建议总�
 在你的例子中，如果x是通过用户接口或外部传递设置的，最好使用exception
 
 如果x仅是同一个程序的内部代码，使用assert
+
+回答2
+
+这个函数是为了能够当x小于0的时候，原子性的抛出一个异常。你可以使用[class descriptors](https://docs.python.org/2/reference/datamodel.html#implementing-descriptors)有一个例子：
+
+    class ZeroException(Exception):
+        pass
+
+    class variable(object):
+        def __init__(self, value=0):
+            self.__x = value
+
+        def __set__(self, obj, value):
+            if value < 0:
+                raise ZeroException('x is less than zero')
+
+            self.__x  = value
+
+        def __get__(self, obj, objType):
+            return self.__x
+
+    class MyClass(object):
+        x = variable()
+
+    >>> m = MyClass()
+    >>> m.x = 10
+    >>> m.x -= 20
+    Traceback (most recent call last):
+       File "<stdin>", line 1, in <module>
+       File "my.py", line 7, in __set__
+          raise ZeroException('x is less than zero')
+    ZeroException: x is less than zero
 
 ### 如何打印到stderr
 

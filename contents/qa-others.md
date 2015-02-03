@@ -237,3 +237,69 @@ subprocess相对于system的好处是, 更灵活
 [Text Mode Demo Contest](http://en.wikipedia.org/wiki/TMDC)有更多把图片处理成文本的源码。
 
 嗯...我想这个问题被我扯远了。尽管我现在纠结着去做一款基于文本的史诗冒险游戏。在有颜色的文本这方面，祝你好运。
+
+### 我该如何保护我的Python代码
+
+Python作为字节码编译的解释型语言，是很难封闭的。几遍你使用一种exe包比如[py2exe](http://py2exe.org/)，可执行文件的结构依然是清晰可见的，而且Python的字节编码是非常易懂的。
+
+通常是这样，你必须要想出一个折衷的办法。保护代码究竟重不重要。里面是不是有很私密的东西(比如银行的对称加密秘钥），或者你是一个偏执狂。选择一门可以让你更快速开发优秀产品的语言，对于你的奇特想法从现实主义考虑一下它的价值。
+
+如果你确定使用要强制授权保证安全，可以写一个小的C拓展，那么这个授权检验就会变得很难逆转（但不是完全不可能）。然后把你的大批代码放进Python。
+
+### 首选的Python单元测试框架
+
+问题[链接](http://stackoverflow.com/questions/191673/preferred-python-unit-testing-framework)
+
+`nose`实际上不是一个单元测试的框架。它是一个测试的执行器，并且是最好的一款。它可以运行通过`pyUnit`，`py.test`和`doctest`创建的测试。
+
+我首选的单元测试框架是pyUnit。它和其他xUnit框架一样，而且可以让没有Python基础的人很好上手。而且它对Eclipse/PyDev提供非常好的支持。
+
+在`py.test`中，我发现了很多层级的安装/卸载混淆在一起。我还发现它生成了很多非常无组织和难阅读的单元测试。
+
+`doctest`对于简单的东西来说还好，但是它很有限，不能真正的用来测试复杂和交互的代码。
+
+### Python的单元测试放在哪？
+
+问题[链接](http://stackoverflow.com/questions/61151/where-do-the-python-unit-tests-go)
+
+对于一个文件`module.py`来说，单元测试通常叫做`test_module.py`，遵循Python的命名规则。
+
+在以下几种地方放置`test_module.py`都是可以接受的：
+
+1. 和`module.py`放在同一个文件夹。
+
+2. 在`../tests/test_module.py`（与代码文件夹的同级）
+
+3. 在`tests/test_module.py` （在代码文件夹下的同层）
+
+我倾向第一种方法，它可以更直观的被找到并且引入。不管你在使用什么样的开发系统，你都可以轻松的配置并找到以`test_`开头的文件。实际上，方便查找的缺省的单元测试模型是`test*.py`。
+
+### distribute, distutils, setuptools和distutils2的区别
+
+问题[链接](http://stackoverflow.com/questions/6344076/differences-between-distribute-distutils-setuptools-and-distutils2)
+
+到2014年9月，所有其他回答的时间都超过一年了。当你寻求Python打包的建议时，记得看一下发布的日期，而且不要相信过时的信息。
+
+这篇搭建在Readthedocs的文章[Python Packaging User Guide](http://stackoverflow.com/questions/6344076/differences-between-distribute-distutils-setuptools-and-distutils2)值得一读。每一页都有一个最近时间展示，所以你可以检查最新的手册，而且它相当的全面。Python 3.4的官方文档已经从信任的角度把这个链接加进来了。
+
+工具的总结：
+
+这里有一个2014年9月份的Python打包总结：
+
+* **Distutils** is still the standard tool for packaging in Python. It is included in the standard library (Python 2 and Python 3.0 to 3.4). It is useful for simple Python distributions, but lacks features. It introduces the distutils Python package that can be imported in your setup.py script.
+
+* **Setuptools** was developed to overcome Distutils' limitations, and is not included in the standard library. It introduced a command-line utility called easy_install. It also introduced the setuptools Python package that can be imported in your setup.py script, and the pkg_resources Python package that can be imported in your code to locate data files installed with a distribution. One of its gotchas is that it monkey-patches the distutils Python package. It should work well with pip. The latest version was released in August 2014.
+
+* **Distribute** was a fork of Setuptools. It shared the same namespace, so if you had Distribute installed, import setuptools would actually import the package distributed with Distribute. Distribute was merged back into Setuptools 0.7, so you don't need to use Distribute any more. In fact, the version on Pypi is just a compatibility layer that installs Setuptools.
+
+* **Distutils2** was an attempt to take the best of Distutils, Setuptools and Distribute and become the standard tool included in Python's standard library. The idea was that Distutils2 would be distributed for old Python versions, and that Distutils2 would be renamed to packaging for Python 3.3, which would include it in its standard library. These plans did not go as intended, however, and currently, Distutils2 is an abandoned project. The latest release was in March 2012, and its Pypi home page has finally been updated to reflect its death.
+
+* **Distlib** is a tool that aims to implement a subset of the previous tools' functionality, but only functionality that is very well-defined in accepted PEPs. It should hopefully be included eventually in the Python standard library. It is still being developed and is not recommended for end-users yet.
+
+* **Bento** is a packaging solution designed to replace Distutils, Setuptools, Distribute and Distutils2, written from the ground up. Its primary developer is also a core developer of numpy/scipy, so he's familiar with non-simple use-cases for packaging systems. Its first commit was in October 2009, and the latest commit as of writing was in August 2014, although the authors are not updating its Pypi page correspondingly. It's in active development but it is not mature yet, and it is not as widely known as Setuptools yet.
+
+推荐：
+
+所以综上所述，排除所有这些选项，我回推荐 **Setuptools**，除非你的需求非常基础，那么你可能只需要 Distutils。Setuptools在Virtualenv和Pip上的表现非常好，我强烈推荐。
+
+作为一个边注，我建议使用Virtualenv1.10或者更高的版本，因为对Python2或3来说，它是第一个识别Setuptools/Distribute并合并的版本。
