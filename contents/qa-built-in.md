@@ -174,7 +174,7 @@ Python中多行注释的方式是
 参考文章 [Closure on closures](http://mrevelle.blogspot.com/2006/10/closure-on-closures.html)
 
     对象是数据和方法关联
-    比宝石函数和数据关联
+    闭包是函数和数据关联
 
 例如
 
