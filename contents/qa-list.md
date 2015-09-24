@@ -249,6 +249,8 @@ python中是不是只有这种方法可以获取长度？语法很奇怪
         seen_add = seen.add
         return [ x for x in seq if x not in seen and not seen_add(x)]
 
+为什么要建立一个到`seen.add`函数的引用`seen_add`，而不是直接调用`seen.add()`呢？Python是一个动态语言，如果使用`seen.add()`，迭代器每次都要解析`seen.add()`函数，相比直接调用一个局部变量`seen_add`会消耗更多资源。（评论问，为什么迭代器每次都要解析`seen.add()`）`seen.add()`可能会在每次迭代中可能会发生变化，而Python的Runtime没有智能到发现这一变化，因此安全起见，每次迭代过程中，迭代器都会重新检查这一对象。
+
 如果你需要在同一个数据集中多次是哦那个这个方法，或许你可以使用ordered set处理 http://code.activestate.com/recipes/528878/
 
 插入，删除和归属判断复杂度都是O(1)
@@ -339,7 +341,7 @@ sum
 
 除了元组是不可变的之外，还有一个语义的区别去控制它们的使用。元组是各种结构类型混杂的（比如，它们的入口有不同的含义），列表则是一致的序列。元组有结构，列表有顺序。
 
-根据这种据别，刻意让代码更为明确和易理解。
+根据这种区别，刻意让代码更为明确和易理解。
 
 用页数和行数来定义一本书中的位置的例子：
 
@@ -347,13 +349,27 @@ sum
 
 然后你可以在一个字典里把这个当做键保存位置的记录。然而列表可以用来存储多点定位。通常会想添加或移除一个列表中的某个定位，所以列表是可变的。另一方面，为了保持行数的完好无损，而改变页书的值似乎说不通，这很可能会给你一个新的定位。而且，可能有很完美的解决办法用来处理正确的行数（而不是替换所有的元组）
 
-这一点，有很多有趣的文章，比如[”Python Tuples are Not Just Constant Lists”](http://jtauber.com/blog/2006/04/15/python_tuples_are_not_just_constant_lists/) or [“Understanding tuples vs. lists in Python”](http://news.e-scribe.com/397)。Python官方文档也[提到了](https://docs.python.org/2/tutorial/datastructures.html#tuples-and-sequences)（“元组是不可变对象，并且用于包含哪些混杂的序列…”)。
+这一点，有很多有趣的文章，比如[”Python Tuples are Not Just Constant Lists”](http://jtauber.com/blog/2006/04/15/python_tuples_are_not_just_constant_lists/) or [“Understanding tuples vs. lists in Python”](http://news.e-scribe.com/397)。Python官方文档也提到了[“元组是不可变对象，并且用于包含哪些混杂的序列…”](https://docs.python.org/2/tutorial/datastructures.html#tuples-and-sequences)。
 
 在一个动态类型语言比如haskell，元组通常有不同的类型，并且元组的长度必须是固定的。在列表中值必须是同一种类型，值长度不需要固定。所以区别很明显。
 
 最后，Python中还有一个[nametuple](https://docs.python.org/dev/library/collections.html#collections.namedtuple)，合理表示一个元组已经有的结构。这些突出的想法明确了元组是类和实例的一种轻型的替换。
 
 ### Python 2.7里[...]是什么？
+
+我在IDLE中输入了这段代码：
+
+    p  = [1, 2]
+    p[1:1] = [p]
+    print p
+
+其输出为：
+
+    [1, [...], 2]
+    
+这里的`[...]`是什么意思，有趣的是，这似乎是一个无限层次的列表的列表的列表，比如：
+
+    p[1][1][1]....
 
 问题[链接](http://stackoverflow.com/questions/17160162/what-is-in-python-2-7)
 
@@ -367,3 +383,10 @@ sum
 
 * 这更像是一种数据结构设计的话题而不是编程语言，所以很不幸，你不能在Python的官方文档找到任何参考
 
+以下是@0562的部分回答：
+
+你创建了一个如下的结构：
+
+![Struct](http://i.stack.imgur.com/mUnTM.png "Struct")
+
+这个列表的第一个和最后一个元素指向两个数字（1和2），其中间的元素是指向自己。
