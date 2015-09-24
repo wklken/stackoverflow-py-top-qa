@@ -293,7 +293,7 @@ why or why not?
 
 这完全取决于i这个对象。
 
-`+=`调用了[`__iadd__`方法](https://docs.python.org/2/reference/datamodel.html#object.__iadd__)（如果存在—不存在就退一步调用`__add__`），然而`+`调用[`__add__`方法]（https://docs.python.org/2/reference/datamodel.html#object.__add__)^1
+`+=`调用了[`__iadd__`方法](https://docs.python.org/2/reference/datamodel.html#object.__iadd__)（如果存在—不存在就退一步调用`__add__`），然而`+`调用[`__add__`方法](https://docs.python.org/2/reference/datamodel.html#object.__add__)^1
 
 从一个API的角度，`__iadd__`期望被使用在恰当的位置修改易变的对象（返回的对象也是转变后的），而`__add__`应该返回某些东西的一个新的实例。对于不可变对象，两种方法都返回新的实例，但`__iadd__`会把新的实例放在和旧实例名字相同的命名空间里。这就是为什么
 
