@@ -75,7 +75,7 @@ in更pythonic, 另外 has_key()在Python3.x中已经被移除
 
 有dict
 
-    >>> d = {'a': 1, 'b': {'c': 2}, 'd': ["hi", {'foo': "bar"}]}}
+    >>> d = {'a': 1, 'b': {'c': 2}, 'd': ["hi", {'foo': "bar"}]}
 
 想用这种方式访问
 
