@@ -22,7 +22,7 @@
     result = getattr(foo, 'bar')()
 
 
-### Python中**和*的作用
+### Python中\**和\*的作用
 
 问题  [链接](http://stackoverflow.com/questions/36901/what-does-double-star-and-star-do-for-python-parameters)
 
