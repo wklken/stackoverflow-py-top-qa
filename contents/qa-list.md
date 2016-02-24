@@ -283,6 +283,8 @@ python中是不是只有这种方法可以获取长度？语法很奇怪
 
 参照 [文档](http://docs.python.org/2/tutorial/datastructures.html#more-on-lists)
 
+**注：** 这毫无疑问是最好的答案，但是千万注意.index()返回的是列表中**第一个**符合这个的元素。举个例子 `["foo", "bar", "baz", "bar"].index('bar')`返回的同样是 `1`.
+
 ### 如何扁平一个二维数组
 
 问题 [链接](http://stackoverflow.com/questions/952914/making-a-flat-list-out-of-list-of-lists-in-python)
