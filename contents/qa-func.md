@@ -22,12 +22,12 @@
     result = getattr(foo, 'bar')()
 
 
-### Python中\**和\*的作用
+### Python中\*\*和\*的作用
 
 问题  [链接](http://stackoverflow.com/questions/36901/what-does-double-star-and-star-do-for-python-parameters)
 
 
-*args和**kwargs允许函数拥有任意数量的参数，具体可以查看 [more on defining functions](http://docs.python.org/dev/tutorial/controlflow.html#more-on-defining-functions)
+\*args和\*\*kwargs允许函数拥有任意数量的参数，具体可以查看 [more on defining functions](http://docs.python.org/dev/tutorial/controlflow.html#more-on-defining-functions)
 
 *args将函数所有参数转为序列
 
