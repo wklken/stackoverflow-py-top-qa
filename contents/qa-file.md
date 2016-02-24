@@ -52,7 +52,7 @@ src/dst是字符串
 
 用rstrip,(rstrip/lstrip/strip)
 
-    #去除了空白+换行
+    #去除了尾部的空白+换行
     >>> 'test string \n'.rstrip()
     'test string'
     #只去换行
