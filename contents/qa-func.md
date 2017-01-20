@@ -181,7 +181,7 @@ David Mertz的文章, [Iterators and Simple Generators](http://www.ibm.com/devel
 
 类似的，`**kwargs`允许你处理那些你没有预先定义好的已命名参数
 
-    >>> def table_everything(*args):
+    >>> def table_everything(*kwargs):
             for name, value in kwargs.items():
     …           print ‘{0} = {1}’.format(name, value)
     …
